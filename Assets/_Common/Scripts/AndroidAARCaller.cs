@@ -28,7 +28,7 @@ namespace Com.GabrielBernabeu.Common {
                 Debug.Log("Plugin instance error");
             }
 
-            pluginInstance.Call("SetUnityActivity", unityActivity);
+            pluginInstance.Call("setUnityActivity", unityActivity);
         }
 
         public void Call(string methodName, params object[] args)
@@ -49,7 +49,7 @@ namespace Com.GabrielBernabeu.Common {
 
         public void Toast()
         {
-            Call("Toast", "Hi! from Unity");
+            Call("toast", "Hi! from Unity");
         }
     }
 }
