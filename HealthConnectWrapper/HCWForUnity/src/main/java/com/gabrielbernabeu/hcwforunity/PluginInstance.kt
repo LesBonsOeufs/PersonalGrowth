@@ -40,7 +40,7 @@ class PluginInstance
         unityActivity = activity
     }
 
-    private fun checkAvailability() {
+    public fun checkAvailability() {
         // Checks HealthConnect availability. If not installed but compatible with the device,
         // prompts the user to install it.
         if (HealthConnectClient.sdkStatus(getAppContext()) == HealthConnectClient.SDK_AVAILABLE) {
@@ -113,7 +113,7 @@ class PluginInstance
         lPermissionsRequestLauncher.launch(allPermissions)
     }
 
-    private suspend fun tryGetTodayStepsCount(): Long
+    public suspend fun tryGetTodayStepsCount(): Long
     {
         var lStepsCount: Long = -1L
 

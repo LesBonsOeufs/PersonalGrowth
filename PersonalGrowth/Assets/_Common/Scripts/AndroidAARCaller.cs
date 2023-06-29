@@ -14,7 +14,7 @@ namespace Com.GabrielBernabeu.Common {
         protected override void Awake()
         {
             base.Awake();
-            Initialize("com.gabrielbernabeu.unitylibplugin.PluginInstance");
+            Initialize("com.gabrielbernabeu.hcwforunity.PluginInstance");
         }
 
         private void Initialize(string pluginName)
@@ -47,9 +47,9 @@ namespace Com.GabrielBernabeu.Common {
                 TextFeedbackMaker.Instance.CreateText("Plugin is null!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
         }
 
-        public void Toast()
+        public void Test()
         {
-            Call("toast", "Hi! from Unity");
+            Call("checkAvailability");
         }
     }
 }
