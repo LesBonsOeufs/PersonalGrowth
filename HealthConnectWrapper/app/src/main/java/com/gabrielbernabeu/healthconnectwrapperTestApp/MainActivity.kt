@@ -1,4 +1,4 @@
-package com.gabrielbernabeu.healthconnectwrapper
+package com.gabrielbernabeu.healthconnectwrapperTestApp
 
 import android.content.Context
 import android.content.Intent
@@ -17,7 +17,6 @@ import androidx.health.connect.client.time.TimeRangeFilter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
