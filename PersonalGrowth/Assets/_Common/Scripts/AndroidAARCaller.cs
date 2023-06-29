@@ -11,6 +11,7 @@ namespace Com.GabrielBernabeu.Common {
         private AndroidJavaObject unityActivity;
         private AndroidJavaObject pluginInstance;
 
+
         protected override void Awake()
         {
             base.Awake();
@@ -23,7 +24,7 @@ namespace Com.GabrielBernabeu.Common {
             unityActivity = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
             pluginInstance = new AndroidJavaObject(pluginName);
 
-            if (pluginInstance != null )
+            if (pluginInstance == null )
             {
                 Debug.Log("Plugin instance error");
             }

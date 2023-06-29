@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.gabrielbernabeu.healthconnectwrapper'
+    namespace 'com.gabrielbernabeu.hwctestapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.gabrielbernabeu.healthconnectwrapper"
+        applicationId "com.gabrielbernabeu.hwctestapp"
         minSdk 26
         targetSdk 33
         versionCode 1

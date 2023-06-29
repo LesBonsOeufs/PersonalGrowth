@@ -1,6 +1,5 @@
-package com.gabrielbernabeu.healthconnectwrapperTestApp
+package com.gabrielbernabeu.hcwforunity
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -19,7 +18,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.temporal.ChronoUnit
-
 
 class PluginInstance
 {

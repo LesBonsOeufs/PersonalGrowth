@@ -1,4 +1,4 @@
-package com.gabrielbernabeu.healthconnectwrapperTestApp
+package com.gabrielbernabeu.hwctestapp
 
 import android.content.Context
 import android.content.Intent
@@ -19,7 +19,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.temporal.ChronoUnit
-
 
 class MainActivity : AppCompatActivity()
 {

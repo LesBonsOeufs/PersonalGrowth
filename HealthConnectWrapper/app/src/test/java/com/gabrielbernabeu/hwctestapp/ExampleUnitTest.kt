@@ -1,4 +1,4 @@
-package com.gabrielbernabeu.healthconnectwrapperTestApp
+package com.gabrielbernabeu.hwctestapp
 
 import org.junit.Test
 
