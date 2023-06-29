@@ -1,13 +1,13 @@
 package com.gabrielbernabeu.healthconnectwrapperTestApp
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.permission.HealthPermission
@@ -21,27 +21,30 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 
-class PluginInstance : AppCompatActivity()
+class PluginInstance
 {
     private val allPermissions: Set<String> =
         setOf(
             HealthPermission.getReadPermission(StepsRecord::class)
         )
 
-    private var appContext: Context? = null
+    private var unityActivity: ComponentActivity? = null
     private var healthClient: HealthConnectClient? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appContext = applicationContext
-        checkAvailability()
+    public fun getAppContext(): Context
+    {
+        return unityActivity!!.applicationContext
+    }
+
+    public fun setUnityActivity(activity: ComponentActivity?) {
+        unityActivity = activity
     }
 
     private fun checkAvailability() {
         // Checks HealthConnect availability. If not installed but compatible with the device,
         // prompts the user to install it.
-        if (HealthConnectClient.sdkStatus(appContext!!) == HealthConnectClient.SDK_AVAILABLE) {
-            healthClient = HealthConnectClient.getOrCreate(appContext!!)
+        if (HealthConnectClient.sdkStatus(getAppContext()) == HealthConnectClient.SDK_AVAILABLE) {
+            healthClient = HealthConnectClient.getOrCreate(getAppContext())
             Log.i("Availability", "HealthConnect is installed!")
             requestPermissions()
         }
@@ -54,6 +57,8 @@ class PluginInstance : AppCompatActivity()
             Log.e("Availability", "HealthConnect is not installed!")
             installHealthConnect()
         }
+
+        unityActivity!!.applicationContext
     }
 
     private fun installHealthConnect()
@@ -63,15 +68,15 @@ class PluginInstance : AppCompatActivity()
                 "android.intent.action.VIEW",
                 Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata")
             )
-            startActivity(lViewIntent)
+            getAppContext().startActivity(lViewIntent)
 
             Toast.makeText(
-                applicationContext, "Install that!",
+                getAppContext(), "Install that!",
                 Toast.LENGTH_LONG
             ).show()
         } catch (e: java.lang.Exception) {
             Toast.makeText(
-                applicationContext, "Unable to Connect, Try Again...",
+                getAppContext(), "Unable to Connect, Try Again...",
                 Toast.LENGTH_LONG
             ).show()
             e.printStackTrace()
@@ -83,7 +88,7 @@ class PluginInstance : AppCompatActivity()
         val lRequestPermissionActivityContract = PermissionController.createRequestPermissionResultContract()
 
         // Asks for all required permissions
-        val lPermissionsRequestLauncher = registerForActivityResult(
+        val lPermissionsRequestLauncher = unityActivity!!.registerForActivityResult(
             lRequestPermissionActivityContract
         ) { granted ->
             // Permission request result handling
@@ -96,7 +101,7 @@ class PluginInstance : AppCompatActivity()
                     Log.i("Steps", "NSteps: $stepsCount")
 
                     Toast.makeText(
-                        applicationContext, "NSteps: $stepsCount",
+                        getAppContext(), "NSteps: $stepsCount",
                         Toast.LENGTH_LONG
                     ).show()
                 }
