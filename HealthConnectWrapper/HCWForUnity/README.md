@@ -19,3 +19,7 @@ Add this to your main manifest:
         <queries>
             <package android:name="com.google.android.apps.healthdata" />
         </queries>
+
+Add this to your gradle's properties:
+
+    android.useAndroidX = true

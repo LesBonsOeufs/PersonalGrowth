@@ -15,7 +15,8 @@ namespace Com.GabrielBernabeu.Common {
         protected override void Awake()
         {
             base.Awake();
-            Initialize("com.gabrielbernabeu.hcwforunity.PluginInstance");
+            //Initialize("com.gabrielbernabeu.hcwforunity.PluginInstance");
+            Initialize("com.gabrielbernabeu.unitylibplugin.PluginInstance");
         }
 
         private void Initialize(string pluginName)
@@ -50,7 +51,8 @@ namespace Com.GabrielBernabeu.Common {
 
         public void Test()
         {
-            Call("checkAvailability");
+            //Call("checkAvailability");
+            Call("toast", "burger king");
         }
     }
 }
