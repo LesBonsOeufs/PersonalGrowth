@@ -239,12 +239,12 @@ PlayerSettings:
   clonedFromGUID: f21810145883f624c8a681751a0a9e63
   templatePackageId: com.unity.template.gabriel.custom@1.2.0
   templateDefaultScene: Assets/_Placeholder/Scenes/Main.unity
-  useCustomMainManifest: 0
+  useCustomMainManifest: 1
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
+  useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 0
   useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 0
+  useCustomGradlePropertiesTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 1
   AndroidTargetDevices: 0
