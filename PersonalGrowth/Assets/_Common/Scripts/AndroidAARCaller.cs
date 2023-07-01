@@ -26,7 +26,7 @@ namespace Com.GabrielBernabeu.Common {
 
             if (pluginInstance == null )
             {
-                Debug.Log("Plugin instance error");
+                Debug.LogError("Plugin instance error");
             }
 
             pluginInstance.Call("setUnityActivity", unityActivity);
