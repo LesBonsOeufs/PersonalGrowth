@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "HealthConnectWrapper"
 include ':app'
 include ':HCWForUnity'
+include ':mylibrary'
+include ':UnityPlayerAndroidX'

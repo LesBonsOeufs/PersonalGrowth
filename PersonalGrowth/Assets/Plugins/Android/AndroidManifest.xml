@@ -4,7 +4,7 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
     <application>
-        <activity android:name="com.unity3d.player.UnityPlayerActivity"
+        <activity android:name="com.gabrielbernabeu.unityplayerandroidx.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>
 				<action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE"/>
