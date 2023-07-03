@@ -13,6 +13,10 @@
 
 **Add this to your main manifest:**
 
+    In <activity android:name>:
+
+        Replace the activity path with "com.gabrielbernabeu.hcwforunity.UnityPlayerActivity"
+
     In <activity>'s <intent-filter>:
 
         <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE"/>

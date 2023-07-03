@@ -20,7 +20,7 @@ namespace Com.GabrielBernabeu.Common {
         {
             unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             unityActivity = unityClass.GetStatic<AndroidJavaObject>("currentActivity");
-            pluginInstance = new AndroidJavaObject(pluginName);
+            pluginInstance = new AndroidJavaObject(pluginName).GetStatic<AndroidJavaObject>("Companion");
 
             if (pluginInstance == null )
             {
@@ -38,7 +38,7 @@ namespace Com.GabrielBernabeu.Common {
             if (pluginInstance != null)
             {
                 TextFeedbackMaker.Instance.CreateText("Plugin exists!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
-                pluginInstance.CallStatic(methodName, args);
+                pluginInstance.Call(methodName, args);
             }
             else
                 TextFeedbackMaker.Instance.CreateText("Plugin is null!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
