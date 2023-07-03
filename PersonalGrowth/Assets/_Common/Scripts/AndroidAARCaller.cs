@@ -11,6 +11,15 @@ namespace Com.GabrielBernabeu.Common {
         private AndroidJavaObject unityActivity;
         private AndroidJavaObject pluginInstance;
 
+        /// <summary>
+        /// Do not change: used by .AAR
+        /// </summary>
+        /// <param name="stepsCount"></param>
+        private void ReceiveTodayStepsCount(string stepsCount)
+        {
+            TextFeedbackMaker.Instance.CreateText(stepsCount, Color.green, 1f, Color.green, 1f, 1f, 1f, Color.green, 0f, 0.5f);
+        }
+
         private void Start()
         {
             Initialize("com.gabrielbernabeu.hcwforunity.Plugin");

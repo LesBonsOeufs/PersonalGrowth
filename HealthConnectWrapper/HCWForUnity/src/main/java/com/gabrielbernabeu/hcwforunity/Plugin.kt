@@ -13,6 +13,7 @@ import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.StepsRecord
 import androidx.health.connect.client.request.ReadRecordsRequest
 import androidx.health.connect.client.time.TimeRangeFilter
+import com.unity3d.player.UnityPlayer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -116,6 +117,8 @@ class Plugin
                         getAppContext(), "NSteps: $stepsCount",
                         Toast.LENGTH_LONG
                     ).show()
+
+                    UnityPlayer.UnitySendMessage("AARCaller", "ReceiveTodayStepsCount", stepsCount.toString())
                 }
             }
             catch (e: java.lang.Exception)

@@ -47,10 +47,10 @@ public class UnityPlayerActivity extends ComponentActivity implements IUnityPlay
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
 
-        initAAR();
+        initPlugin();
     }
 
-    private void initAAR()
+    private void initPlugin()
     {
         Plugin.Companion.setUnityActivity(this);
         Plugin.Companion.checkAvailability();
