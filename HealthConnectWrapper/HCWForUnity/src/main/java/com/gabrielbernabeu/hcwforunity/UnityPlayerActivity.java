@@ -1,4 +1,4 @@
-package com.gabrielbernabeu.unityplayerandroidx;
+package com.gabrielbernabeu.hcwforunity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -46,6 +46,14 @@ public class UnityPlayerActivity extends ComponentActivity implements IUnityPlay
         mUnityPlayer = new UnityPlayer(this, this);
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
+
+        initAAR();
+    }
+
+    private void initAAR()
+    {
+        Plugin.Companion.setUnityActivity(this);
+        Plugin.Companion.checkAvailability();
     }
 
     // When Unity player unloaded move task to background

@@ -11,11 +11,9 @@ namespace Com.GabrielBernabeu.Common {
         private AndroidJavaObject unityActivity;
         private AndroidJavaObject pluginInstance;
 
-
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
-            Initialize("com.gabrielbernabeu.hcwforunity.PluginInstance");
+            Initialize("com.gabrielbernabeu.hcwforunity.Plugin");
         }
 
         private void Initialize(string pluginName)
@@ -28,8 +26,6 @@ namespace Com.GabrielBernabeu.Common {
             {
                 Debug.Log("Plugin instance error");
             }
-
-            pluginInstance.Call("setUnityActivity", unityActivity);
         }
 
         public void Call(string methodName, params object[] args)
@@ -42,7 +38,7 @@ namespace Com.GabrielBernabeu.Common {
             if (pluginInstance != null)
             {
                 TextFeedbackMaker.Instance.CreateText("Plugin exists!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
-                pluginInstance.Call(methodName, args);
+                pluginInstance.CallStatic(methodName, args);
             }
             else
                 TextFeedbackMaker.Instance.CreateText("Plugin is null!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
@@ -50,7 +46,7 @@ namespace Com.GabrielBernabeu.Common {
 
         public void Test()
         {
-            Call("checkAvailability");
+            Call("getTodayStepsCount");
         }
     }
 }
