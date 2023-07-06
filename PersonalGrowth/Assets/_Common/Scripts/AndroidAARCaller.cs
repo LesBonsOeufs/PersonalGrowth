@@ -1,26 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.Common {
-    public class AndroidAARCaller : Singleton<AndroidAARCaller>
+namespace Com.GabrielBernabeu.Common 
+{
+    public class AndroidAARCaller : MonoBehaviour
     {
         private AndroidJavaClass unityClass;
         private AndroidJavaObject unityActivity;
         private AndroidJavaObject pluginInstance;
 
-        /// <summary>
-        /// Do not change: used by .AAR
-        /// </summary>
-        /// <param name="stepsCount"></param>
-        private void ReceiveTodayStepsCount(string stepsCount)
-        {
-            TextFeedbackMaker.Instance.CreateText(stepsCount, Color.green, 1f, Color.green, 1f, 1f, 1f, Color.green, 0f, 0.5f);
-        }
-
-        private void Start()
+        protected void Awake()
         {
             Initialize("com.gabrielbernabeu.hcwforunity.Plugin");
         }
@@ -46,16 +34,11 @@ namespace Com.GabrielBernabeu.Common {
         {
             if (pluginInstance != null)
             {
-                TextFeedbackMaker.Instance.CreateText("Plugin exists!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
+                Debug.Log("Plugin exists!");
                 pluginInstance.Call(methodName, args);
             }
             else
-                TextFeedbackMaker.Instance.CreateText("Plugin is null!", Color.black, 1f, Color.black, 1f, 1f, 1f, Color.black, 0f, 0.5f);
-        }
-
-        public void Test()
-        {
-            Call("getTodayStepsCount");
+                Debug.LogError("Plugin is null!");
         }
     }
 }

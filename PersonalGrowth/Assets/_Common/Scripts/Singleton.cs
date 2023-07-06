@@ -2,6 +2,9 @@
 
 public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
+    [Header("Singleton")]
+    [SerializeField] private bool dontDestroyOnLoad = false;
+
     /// <summary>
     /// The instance.
     /// </summary>
@@ -27,7 +30,16 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
         if (instance == null)
             instance = this as T;
         else if (instance != this)
+        {
             Destroy(gameObject);
+            return;
+        }
+
+        if (dontDestroyOnLoad)
+        {
+            transform.parent = null;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     protected virtual void OnDestroy()

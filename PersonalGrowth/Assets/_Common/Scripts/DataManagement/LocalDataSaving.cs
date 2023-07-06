@@ -8,18 +8,24 @@ namespace Com.GabrielBernabeu.Common.DataManagement {
     {
         private const string DATA_PATH = "/userLocalData.dat";
 
-        public static void SaveData(LocalData dataToSave)
-        {
-            FileStream lFile = null;
+        public static LocalData CurrentData { get; private set; }
 
-            FillDataToSave(ref dataToSave);
+        public static void SaveData()
+        {
+            if (CurrentData == null)
+            {
+                Debug.LogError("Data is null");
+                return;
+            }
+
+            FileStream lFile = null;
 
             try
             {
                 BinaryFormatter lBinaryFormatter = new BinaryFormatter();
                 lFile = File.Create(Application.persistentDataPath + DATA_PATH);
 
-                lBinaryFormatter.Serialize(lFile, dataToSave);
+                lBinaryFormatter.Serialize(lFile, CurrentData);
             } 
             catch (Exception error)
             {
@@ -33,9 +39,9 @@ namespace Com.GabrielBernabeu.Common.DataManagement {
             }
         }
 
-        public static LocalData? LoadData()
+        public static void LoadData()
         {
-            LocalData? lSavedData = null;
+            LocalData lSavedData = null;
             // OU Nullable<LocalData> lSavedData = null;
             FileStream lFile = null;
 
@@ -44,7 +50,7 @@ namespace Com.GabrielBernabeu.Common.DataManagement {
                 BinaryFormatter lBinaryFormatter = new BinaryFormatter();
                 lFile = File.Open(Application.persistentDataPath + DATA_PATH, FileMode.Open);
 
-                lSavedData = lBinaryFormatter.Deserialize(lFile) as LocalData?;
+                lSavedData = lBinaryFormatter.Deserialize(lFile) as LocalData;
             }
             catch (Exception error) 
             {
@@ -57,28 +63,12 @@ namespace Com.GabrielBernabeu.Common.DataManagement {
                     lFile.Close();
             }
 
-            return lSavedData;
+            CurrentData = lSavedData;
         }
 
         public static void DeleteData()
         {
             File.Delete(Application.persistentDataPath + DATA_PATH);
-        }
-
-        private static void FillDataToSave(ref LocalData dataToSave)
-        {
-            //LocalData? lNullableLoadedData = LoadData();
-
-            //if (lNullableLoadedData != null)
-            //{
-            //    LocalData lLoadedData = lNullableLoadedData.Value;
-
-            //    if (dataToSave.username == null || dataToSave.password == null)
-            //    {
-            //        dataToSave.username = lLoadedData.username;
-            //        dataToSave.password = lLoadedData.password;
-            //    }
-            //}
         }
     }
 }
