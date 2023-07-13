@@ -1,3 +1,6 @@
+**In the Android Player settings, activate custom main gradle, main manifest, & gradle properties.**
+**Keep the Plugins folder which contains them right beneath the Assets folder.**
+
 **Add this to your main gradle's dependencies:**
 
     //FOR HCW
