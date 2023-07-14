@@ -1,7 +1,7 @@
 using Com.GabrielBernabeu.Common;
 using System;
 
-namespace Com.GabrielBernabeu.PersonalGrowth {
+namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     public class HealthConnectAARCaller : AndroidAARCaller
     {
         private Action<int> todayStepsReceivedCallback;

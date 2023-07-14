@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "OrbitalDance/MusicInfo")]
+[CreateAssetMenu(menuName = "Metronome/MusicInfo")]
 public class MusicInfo : ScriptableObject 
 {
     [SerializeField] private AudioClip _clip = default;

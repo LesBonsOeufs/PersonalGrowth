@@ -1,7 +1,7 @@
 using Com.GabrielBernabeu.Common.DataManagement;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth {
+namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     public delegate void PodometerEventHandler(Podometer sender);
     public class Podometer : Singleton<Podometer>
     {

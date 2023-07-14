@@ -33,11 +33,11 @@ public class InputHandler : MonoBehaviour,
 	[Label("Drag")]
 	[Foldout("Left Drag")] public UnityEvent onBeginDragL = default;
 	[Foldout("Left Drag")] public UnityEvent onDuringDragL = default;
-	[Foldout("Left Drag")] public UnityEvent onFinishDragL = default;
+	[Foldout("Left Drag")] public UnityEvent onEndDragL = default;
 
 	[Foldout("Right Drag")] public UnityEvent onBeginDragR = default;
 	[Foldout("Right Drag")] public UnityEvent onDuringDragR = default;
-	[Foldout("Right Drag")] public UnityEvent onFinishDragR = default;
+	[Foldout("Right Drag")] public UnityEvent onEndDragR = default;
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
@@ -150,11 +150,11 @@ public class InputHandler : MonoBehaviour,
 		{
 			case PointerEventData.InputButton.Left:
 				dragClickL = false;
-				onFinishDragL?.Invoke();
+				onEndDragL?.Invoke();
 				break;
 			case PointerEventData.InputButton.Right:
 				dragClickR = false;
-				onFinishDragR?.Invoke();
+				onEndDragR?.Invoke();
 				break;
 		}
 	}
