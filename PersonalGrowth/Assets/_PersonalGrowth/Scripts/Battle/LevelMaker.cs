@@ -8,7 +8,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         public static LevelInfos currentLevel = null;
 
         [SerializeField] private LevelInfos debugCurrentLevel = default;
-        [SerializeField] private BallUnit enemyUnitPrefab = default;
+        [SerializeField] private EnemyBall enemyUnitPrefab = default;
 
         private void Start()
         {

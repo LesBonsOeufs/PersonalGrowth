@@ -1,8 +1,7 @@
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
-{
-    public class BallUnit : MonoBehaviour
+namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+    public class EnemyBall : MonoBehaviour
     {
         [SerializeField] private UnitInfos infos = default;
         [SerializeField] private HealthDisplayer healthDisplayer = default;
@@ -34,8 +33,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
         private void OnCollisionEnter(Collision collision)
         {
             float lCollisionForce = collision.impulse.magnitude / Time.fixedDeltaTime;
-
-            Debug.Log(lCollisionForce);
 
             if (lCollisionForce >= minForceForDamage)
                 Health--;

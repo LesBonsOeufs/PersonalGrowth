@@ -1,32 +1,40 @@
 using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
+{
+    public delegate void DragShootEventHandler(DragShoot sender);
+
     [RequireComponent(typeof(Rigidbody))]
     public class DragShoot : MonoBehaviour
     {
         [SerializeField] private float dragPowerPerPixel = 5f;
 
-        private new Rigidbody rigidbody;
         private Vector2 startDragPosition;
 
-        private void Awake()
-        {
-            rigidbody = GetComponent<Rigidbody>();
-        }
+        public event DragShootEventHandler OnShoot;
 
         private void OnMouseDown()
         {
-            Debug.Log("start");
+            if (!enabled)
+                return;
+
             startDragPosition = Input.mousePosition;
         }
 
         private void OnMouseUp()
         {
-            Debug.Log("end");
+            if (!enabled)
+                return;
+
             Vector2 lDeltaDrag = (Vector2)Input.mousePosition - startDragPosition;
-            Debug.Log(lDeltaDrag);
-            rigidbody.AddForce(-new Vector3(lDeltaDrag.x, 0f, lDeltaDrag.y) * dragPowerPerPixel, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(-new Vector3(lDeltaDrag.x, 0f, lDeltaDrag.y) * dragPowerPerPixel, ForceMode.Impulse);
+            OnShoot?.Invoke(this);
+        }
+
+        private void OnDestroy()
+        {
+            OnShoot = null;
         }
     }
 }

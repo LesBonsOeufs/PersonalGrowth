@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7908020899117533924}
   - component: {fileID: 7908020899117533921}
   - component: {fileID: 7908020899117533923}
+  - component: {fileID: 1779381190}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -93,7 +94,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7908020899117533850}
-  m_Material: {fileID: 13400000, guid: d5714758821d68b46a64914f166261f2, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -109,7 +110,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1000
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -128,3 +129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragPowerPerPixel: 35
+--- !u!114 &1779381190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7908020899117533850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e22ebbcf88e2bc46ab96f409c0e9bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDeathSpeed: 1
