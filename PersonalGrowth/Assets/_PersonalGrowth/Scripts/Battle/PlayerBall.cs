@@ -14,6 +14,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private bool shot = false;
         private new Rigidbody rigidbody;
+        private float lastVelocityMagnitude = 0f;
 
         public event PlayerBallEventHandler OnDeath;
 
@@ -28,8 +29,12 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
             if (!shot)
                 return;
 
-            if (rigidbody.velocity.magnitude <= maxDeathSpeed)
+            float lCurrentVelocityMagnitude = rigidbody.velocity.magnitude;
+
+            if (lastVelocityMagnitude > lCurrentVelocityMagnitude && lCurrentVelocityMagnitude <= maxDeathSpeed)
                 Die();
+
+            lastVelocityMagnitude = rigidbody.velocity.magnitude;
         }
 
         private void DragShoot_OnShoot(DragShoot sender)
