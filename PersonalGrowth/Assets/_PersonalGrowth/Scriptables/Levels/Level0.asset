@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Level0
   m_EditorClassIdentifier: 
   _units:
-  - unitInfos: {fileID: 0}
+  - infos: {fileID: 11400000, guid: c1a1c92a477ea6b428620a0120cd0ec8, type: 2}
     position: {x: -3, y: 0.5, z: 2}
-  - unitInfos: {fileID: 0}
+  - infos: {fileID: 11400000, guid: c19d7237f0d07704d9f9b52abcfa4bd8, type: 2}
     position: {x: 0, y: 0.5, z: 2}
-  - unitInfos: {fileID: 0}
+  - infos: {fileID: 11400000, guid: f0a813ea70647614a934be6eab799ce3, type: 2}
     position: {x: 3, y: 0.5, z: 2}

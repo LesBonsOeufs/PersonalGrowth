@@ -19,7 +19,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         {
             foreach (LevelInfos.LevelUnit levelUnit in level.Units)
             {
-                Instantiate(enemyUnitPrefab, levelUnit.position, Quaternion.identity, null);
+                EnemyBall lEnemy = Instantiate(enemyUnitPrefab, levelUnit.position, Quaternion.identity, null);
+                lEnemy.SetInfos(levelUnit.infos);
             }
         }
     }

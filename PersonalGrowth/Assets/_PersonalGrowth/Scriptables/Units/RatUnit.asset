@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 886b58b6dfcbb8041895ae25c3ebedd8, type: 3}
-  m_Name: SpiderUnit
+  m_Name: RatUnit
   m_EditorClassIdentifier: 
-  _maxHealth: 3
-  _characterInfos: {fileID: 11400000, guid: e989b9ba8e33ee44894a86a62202eed3, type: 2}
+  _maxHealth: 2
+  _characterInfos: {fileID: 11400000, guid: 6b36ffc3f91df4d409c1d0c58341ad3d, type: 2}

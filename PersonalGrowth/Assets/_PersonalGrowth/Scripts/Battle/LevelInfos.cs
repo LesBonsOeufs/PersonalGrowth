@@ -14,7 +14,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         [Serializable]
         public struct LevelUnit
         {
-            public UnitInfos unitInfos;
+            public UnitInfos infos;
             public Vector3 position;
         }
     }
