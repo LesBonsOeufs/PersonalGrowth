@@ -22,16 +22,18 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         {
             Camera lMainCamera = Camera.main;
             Vector2 lTargetScreenPosition = (Vector2)lMainCamera.WorldToScreenPoint(target.position);
+            Vector2 lTransformScreenPosition = (Vector2)lMainCamera.WorldToScreenPoint(transform.position);
 
             RectTransformUtility.ScreenPointToWorldPointInRectangle(rectTransform, lTargetScreenPosition, lMainCamera,
                 out Vector3 lProjectedTargetPosition);
 
-            Vector3 lToTarget = lProjectedTargetPosition - transform.position;
-            float lAngle = Vector3.SignedAngle(transform.right, lToTarget, transform.forward);
+            Vector3 lToProjectedTarget = lProjectedTargetPosition - transform.position;
+            Vector3 lScreenSpaceToTarget = lTargetScreenPosition - lTransformScreenPosition;
+            float lAngle = Vector3.SignedAngle(transform.right, lToProjectedTarget, transform.forward);
 
             tip.position = transform.position;
-            trail.position = transform.position + lToTarget * 0.5f;
-            trail.sizeDelta = new Vector2(lToTarget.magnitude * canvas.scaleFactor, 50f);
+            trail.position = transform.position + lToProjectedTarget * 0.5f;
+            trail.sizeDelta = new Vector2(lScreenSpaceToTarget.magnitude / canvas.scaleFactor, 50f);
             trail.rotation = transform.rotation * Quaternion.Euler(0f, 0f, lAngle);
         }
     }
