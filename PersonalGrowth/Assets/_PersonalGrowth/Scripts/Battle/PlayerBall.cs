@@ -20,8 +20,16 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private void Start()
         {
-            GetComponent<DragShoot>().OnShoot += DragShoot_OnShoot;
+            DragShoot lDragShoot = GetComponent<DragShoot>();
+            lDragShoot.OnDrag += DragShoot_OnDrag;
+            lDragShoot.OnShoot += DragShoot_OnShoot;
             rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void DragShoot_OnDrag(DragShoot sender)
+        {
+            TrailToTarget.Instance.SetTarget(transform);
+            TrailToTarget.Instance.Show();
         }
 
         private void FixedUpdate()
@@ -41,6 +49,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
         {
             sender.enabled = false;
             shot = true;
+            TrailToTarget.Instance.Hide();
         }
 
         private void Die()

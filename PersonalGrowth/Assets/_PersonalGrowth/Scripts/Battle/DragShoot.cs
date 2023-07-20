@@ -1,4 +1,4 @@
-using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
@@ -12,6 +12,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private Vector2 startDragPosition;
 
+        public event DragShootEventHandler OnDrag;
         public event DragShootEventHandler OnShoot;
 
         private void OnMouseDown()
@@ -20,6 +21,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
                 return;
 
             startDragPosition = Input.mousePosition;
+            OnDrag?.Invoke(this);
         }
 
         private void OnMouseUp()
@@ -34,6 +36,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private void OnDestroy()
         {
+            OnDrag = null;
             OnShoot = null;
         }
     }
