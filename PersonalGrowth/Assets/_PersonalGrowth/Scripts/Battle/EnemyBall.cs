@@ -11,7 +11,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
         [SerializeField] private HealthDisplayer healthDisplayer = default;
         [SerializeField] private float minForceForDamage = 400f;
         [SerializeField] private new Renderer renderer = default;
+
+        [Header("Tags")]
         [SerializeField, Tag] private string gameBoundsTag = default;
+        [SerializeField, Tag] private string groundTag = default;
 
         [Header("Feedbacks")]
         [SerializeField] private MMF_Player hurtFeedbacks = default;
@@ -54,6 +57,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         protected override void OnCollisionEnter(Collision collision)
         {
+            if (collision.collider.CompareTag(groundTag))
+                return;
+
             base.OnCollisionEnter(collision);
 
             if (Health <= 0)

@@ -71,6 +71,7 @@ MonoBehaviour:
   minForceForDamage: 45000
   renderer: {fileID: 9194398075453298272}
   gameBoundsTag: GameBounds
+  groundTag: Ground
   hurtFeedbacks: {fileID: 4182098110446895028}
   deathFeedbacks: {fileID: 7305830928564217886}
 --- !u!1 &4256410703911927066

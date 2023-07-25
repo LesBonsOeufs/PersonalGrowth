@@ -11,6 +11,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private void Start()
         {
+            TrailToTarget.Instance.Hide();
             Spawn();
         }
 
