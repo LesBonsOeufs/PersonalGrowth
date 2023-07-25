@@ -1,13 +1,21 @@
+using DG.Tweening;
+using MoreMountains.Feedbacks;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
 {
-    public class EnemyBall : MonoBehaviour
+    public class EnemyBall : Ball
     {
         [SerializeField] private UnitInfos infos = default;
         [SerializeField] private HealthDisplayer healthDisplayer = default;
         [SerializeField] private float minForceForDamage = 400f;
         [SerializeField] private new Renderer renderer = default;
+        [SerializeField, Tag] private string gameBoundsTag = default;
+
+        [Header("Feedbacks")]
+        [SerializeField] private MMF_Player hurtFeedbacks = default;
+        [SerializeField] private MMF_Player deathFeedbacks = default;
 
         public int Health
         {
@@ -18,14 +26,24 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
             set
             {
+                if (value < _health)
+                    hurtFeedbacks.PlayFeedbacks();
+
                 _health = value;
                 healthDisplayer.SetHealth(_health);
 
                 if (_health <= 0)
-                    Destroy(gameObject);
+                    deathFeedbacks.PlayFeedbacks();
             }
         }
         private int _health;
+
+        private void Start()
+        {
+            Vector3 lInitScale = transform.localScale;
+            transform.localScale = Vector3.zero;
+            transform.DOScale(lInitScale, 0.6f).SetEase(Ease.OutBack);
+        }
 
         public void SetInfos(UnitInfos infos)
         {
@@ -34,12 +52,23 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
             renderer.material = infos.CharacterInfos.Material;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        protected override void OnCollisionEnter(Collision collision)
         {
+            base.OnCollisionEnter(collision);
+
+            if (Health <= 0)
+                return;
+
             float lCollisionForce = collision.impulse.magnitude / Time.fixedDeltaTime;
 
             if (lCollisionForce >= minForceForDamage)
                 Health--;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag(gameBoundsTag))
+                Destroy(gameObject);
         }
 
         private void OnValidate()

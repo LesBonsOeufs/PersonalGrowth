@@ -5,7 +5,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
     public class PlayerSpawner : MonoBehaviour
     {
         [SerializeField] private Transform spawnPos = default;
+        [SerializeField] private GameObject aura = default;
         [SerializeField] private PlayerBall playerPrefab = default;
+        [SerializeField] private ParticleSystem spawnParticles = default;
 
         private void Start()
         {
@@ -14,12 +16,17 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private void Spawn()
         {
+            spawnParticles.Play();
+            aura.SetActive(true);
             PlayerBall lPlayerBall = Instantiate(playerPrefab, spawnPos.position, Quaternion.identity, null);
+            lPlayerBall.DragShoot.OnShoot += DragShoot_OnShoot;
             lPlayerBall.OnDeath += PlayerBall_OnDeath;
+        }
 
-            Vector3 lInitScale = lPlayerBall.transform.localScale;
-            lPlayerBall.transform.localScale = Vector3.zero;
-            lPlayerBall.transform.DOScale(lInitScale, 0.6f).SetEase(Ease.OutBack);
+        private void DragShoot_OnShoot(DragShoot sender)
+        {
+            sender.OnShoot -= DragShoot_OnShoot;
+            aura.SetActive(false);
         }
 
         private void PlayerBall_OnDeath(PlayerBall sender)

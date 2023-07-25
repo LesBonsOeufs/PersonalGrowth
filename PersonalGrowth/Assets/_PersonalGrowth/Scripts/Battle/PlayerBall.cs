@@ -7,7 +7,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
     public delegate void PlayerBallEventHandler(PlayerBall sender);
 
     [RequireComponent(typeof(DragShoot))]
-    public class PlayerBall : MonoBehaviour
+    public class PlayerBall : Ball
     {
         [SerializeField, Tooltip("Once the ball is slower than this, it dies")] 
         private float maxDeathSpeed = 1f;
@@ -16,14 +16,24 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
         private new Rigidbody rigidbody;
         private float lastVelocityMagnitude = 0f;
 
+        public DragShoot DragShoot { get; private set; }
+
         public event PlayerBallEventHandler OnDeath;
+
+        private void Awake()
+        {
+            DragShoot = GetComponent<DragShoot>();
+        }
 
         private void Start()
         {
-            DragShoot lDragShoot = GetComponent<DragShoot>();
-            lDragShoot.OnDrag += DragShoot_OnDrag;
-            lDragShoot.OnShoot += DragShoot_OnShoot;
+            DragShoot.OnDrag += DragShoot_OnDrag;
+            DragShoot.OnShoot += DragShoot_OnShoot;
             rigidbody = GetComponent<Rigidbody>();
+
+            Vector3 lInitScale = transform.localScale;
+            transform.localScale = Vector3.zero;
+            transform.DOScale(lInitScale, 0.6f).SetEase(Ease.OutBack);
         }
 
         private void DragShoot_OnDrag(DragShoot sender)

@@ -19,3 +19,7 @@ MonoBehaviour:
     position: {x: 0, y: 0.5, z: 2}
   - infos: {fileID: 11400000, guid: f0a813ea70647614a934be6eab799ce3, type: 2}
     position: {x: 3, y: 0.5, z: 2}
+  - infos: {fileID: 11400000, guid: 2484c0477d34adf44ad4302c6bb82b4e, type: 2}
+    position: {x: 3, y: 0.5, z: -3.5}
+  - infos: {fileID: 11400000, guid: 0ea395cb9c730f34783242609543faef, type: 2}
+    position: {x: 0, y: 0.5, z: -3.5}
