@@ -30,9 +30,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
             if (!enabled)
                 return;
 
+            OnShoot?.Invoke(this);
             Vector2 lDeltaDrag = (Vector2)Input.mousePosition - startDragPosition;
             GetComponent<Rigidbody>().AddForce(-new Vector3(lDeltaDrag.x, 0f, lDeltaDrag.y) * dragPowerPerPixel, ForceMode.Impulse);
-            OnShoot?.Invoke(this);
         }
 
         private void OnDestroy()

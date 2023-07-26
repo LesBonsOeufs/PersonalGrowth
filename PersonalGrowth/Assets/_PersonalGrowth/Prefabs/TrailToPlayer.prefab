@@ -127,9 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a137078a6db304fb571c341320f241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  dontDestroyOnLoad: 0
   trail: {fileID: 2273443266572336367}
   tip: {fileID: 2273443267037124242}
+  thicknessChangeDistancesMinMax: {x: 50, y: 300}
+  thicknessMinMax: {x: 10, y: 50}
 --- !u!1 &2273443267037124241
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2273443267037124244
 CanvasRenderer:

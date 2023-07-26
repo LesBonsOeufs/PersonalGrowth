@@ -30,6 +30,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
             DragShoot.OnDrag += DragShoot_OnDrag;
             DragShoot.OnShoot += DragShoot_OnShoot;
             rigidbody = GetComponent<Rigidbody>();
+            rigidbody.isKinematic = true;
 
             Vector3 lInitScale = transform.localScale;
             transform.localScale = Vector3.zero;
@@ -57,6 +58,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private void DragShoot_OnShoot(DragShoot sender)
         {
+            rigidbody.isKinematic = false;
             sender.enabled = false;
             shot = true;
             TrailToTarget.Instance.Hide();
