@@ -9,6 +9,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
     [RequireComponent(typeof(DragShoot))]
     public class PlayerBall : Ball
     {
+        [SerializeField] private TrailRenderer trailRenderer = default;
         [SerializeField, Tooltip("Once the ball is slower than this, it dies")] 
         private float maxDeathSpeed = 1f;
 
@@ -66,6 +67,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle
 
         private void Die()
         {
+            trailRenderer.enabled = false;
             enabled = false;
             transform.DOScale(0f, 0.4f).SetEase(Ease.OutCubic)
                 .OnComplete(() =>
