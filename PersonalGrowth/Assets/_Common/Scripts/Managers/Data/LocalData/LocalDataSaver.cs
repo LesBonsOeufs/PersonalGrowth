@@ -9,7 +9,7 @@ public static class LocalDataSaver<T> where T : class, new()
 	private const string SAVE_EXTENSION = ".save";
 	private const bool DEBUG_ENABLED = true;
 
-    private readonly static string saveName = "olly" + typeof(T).Name;
+    private readonly static string saveName = "pg" + typeof(T).Name;
 
     private static string saveFullPath;
 

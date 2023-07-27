@@ -32,6 +32,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         private void OnStepsCountReceived(int nSteps)
         {
             TodayStepsCount = nSteps;
+
+            
         }
 
         protected override void OnDestroy()

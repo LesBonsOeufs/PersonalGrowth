@@ -12,11 +12,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         [SerializeField] private TextMeshProUGUI kilometersTmp = default;
         [SerializeField] private TextMeshProUGUI kcaloriesTmp = default;
 
-        [Header("Prefixes")]
-        [SerializeField] private string stepsPrefix = "Steps: ";
-        [SerializeField] private string kilometersPrefix = "Kilometers: ";
-        [SerializeField] private string kcaloriesPrefix = "Kcalories: ";
-
         private void Awake()
         {
             Podometer.Instance.OnStepsUpdate += Podometer_OnStepsUpdate;
@@ -32,9 +27,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
             float lNKilometers = (float)nSteps / STEPS_PER_KILOMETER;
             float lNKCalories = lNKilometers * KCALORIES_PER_KILOMETER;
 
-            stepsTmp.text = stepsPrefix + nSteps;
-            kilometersTmp.text = kilometersPrefix + lNKilometers;
-            kcaloriesTmp.text = kcaloriesPrefix + lNKCalories;
+            stepsTmp.text = nSteps.ToString();
+            kilometersTmp.text = lNKilometers.ToString();
+            kcaloriesTmp.text = lNKCalories.ToString();
         }
 
         private void OnDestroy()
