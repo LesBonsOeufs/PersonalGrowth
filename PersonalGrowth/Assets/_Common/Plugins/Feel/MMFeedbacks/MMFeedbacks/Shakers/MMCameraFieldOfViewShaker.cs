@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -117,13 +117,16 @@ namespace MoreMountains.Feedbacks
 				_originalRelativeFieldOfView = RelativeFieldOfView;
 			}
 
-			TimescaleMode = timescaleMode;
-			ShakeDuration = duration;
-			ShakeFieldOfView = distortionCurve;
-			RemapFieldOfViewZero = remapMin * feedbacksIntensity;
-			RemapFieldOfViewOne = remapMax * feedbacksIntensity;
-			RelativeFieldOfView = relativeDistortion;
-			ForwardDirection = forwardDirection;
+			if (!OnlyUseShakerValues)
+			{
+				TimescaleMode = timescaleMode;
+				ShakeDuration = duration;
+				ShakeFieldOfView = distortionCurve;
+				RemapFieldOfViewZero = remapMin * feedbacksIntensity;
+				RemapFieldOfViewOne = remapMax * feedbacksIntensity;
+				RelativeFieldOfView = relativeDistortion;
+				ForwardDirection = forwardDirection;
+			}
 
 			Play();
 		}

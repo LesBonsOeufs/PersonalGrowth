@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -113,13 +113,16 @@ namespace MoreMountains.Feedbacks
 				_originalRelativeHighPass = RelativeHighPass;
 			}
 
-			TimescaleMode = timescaleMode;
-			ShakeDuration = duration;
-			ShakeHighPass = highPassCurve;
-			RemapHighPassZero = remapMin * feedbacksIntensity;
-			RemapHighPassOne = remapMax * feedbacksIntensity;
-			RelativeHighPass = relativeHighPass;
-			ForwardDirection = forwardDirection;
+			if (!OnlyUseShakerValues)
+			{
+				TimescaleMode = timescaleMode;
+				ShakeDuration = duration;
+				ShakeHighPass = highPassCurve;
+				RemapHighPassZero = remapMin * feedbacksIntensity;
+				RemapHighPassOne = remapMax * feedbacksIntensity;
+				RelativeHighPass = relativeHighPass;
+				ForwardDirection = forwardDirection;
+			}
 
 			Play();
 		}

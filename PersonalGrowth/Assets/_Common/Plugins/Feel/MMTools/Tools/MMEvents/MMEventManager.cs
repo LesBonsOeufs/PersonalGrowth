@@ -1,4 +1,4 @@
-//#define EVENTROUTER_THROWEXCEPTIONS 
+﻿//#define EVENTROUTER_THROWEXCEPTIONS 
 #if EVENTROUTER_THROWEXCEPTIONS
 //#define EVENTROUTER_REQUIRELISTENER // Uncomment this if you want listeners to be required for sending events.
 #endif

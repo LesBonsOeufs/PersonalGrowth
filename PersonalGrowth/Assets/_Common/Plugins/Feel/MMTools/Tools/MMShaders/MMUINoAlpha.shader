@@ -1,4 +1,4 @@
-Shader "MoreMountains/UINoAlpha"
+﻿Shader "MoreMountains/UINoAlpha"
 {
 	Properties
 	{

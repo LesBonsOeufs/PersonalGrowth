@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace MoreMountains.Tools
 {
-	[CustomEditor(typeof(MMConeOfVision))]
+	[CustomEditor(typeof(MMConeOfVision), true)]
 	public class MMConeOfVisionInspector : Editor
 	{
 		protected MMConeOfVision _coneOfVision;

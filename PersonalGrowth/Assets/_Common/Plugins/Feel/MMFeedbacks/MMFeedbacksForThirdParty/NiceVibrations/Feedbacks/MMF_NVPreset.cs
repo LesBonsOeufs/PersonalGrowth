@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using MoreMountains.Feedbacks;
 #if MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
 using Lofelt.NiceVibrations;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -114,13 +114,16 @@ namespace MoreMountains.FeedbacksForThirdParty
 				_originalRelativeDistance = RelativeDistance;
 			}
 
-			TimescaleMode = timescaleMode;
-			ShakeDuration = duration;
-			ShakeDistance = distance;
-			RemapDistanceZero = remapMin * attenuation;
-			RemapDistanceOne = remapMax * attenuation;
-			RelativeDistance = relativeDistance;
-			ForwardDirection = forwardDirection;
+			if (!OnlyUseShakerValues)
+			{
+				TimescaleMode = timescaleMode;
+				ShakeDuration = duration;
+				ShakeDistance = distance;
+				RemapDistanceZero = remapMin * attenuation;
+				RemapDistanceOne = remapMax * attenuation;
+				RelativeDistance = relativeDistance;
+				ForwardDirection = forwardDirection;
+			}
 
 			Play();
 		}

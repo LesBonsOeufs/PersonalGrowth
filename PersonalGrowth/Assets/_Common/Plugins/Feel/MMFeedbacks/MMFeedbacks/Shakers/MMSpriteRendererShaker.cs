@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -145,11 +145,14 @@ namespace MoreMountains.Feedbacks
 				_originalColorOverTime = ColorOverTime;
 			}
 
-			ModifyColor = modifyColor;
-			ShakeDuration = shakeDuration;
-			ColorOverTime = colorOverTime;
-			FlipX = flipX;
-			FlipY = flipY;
+			if (!OnlyUseShakerValues)
+			{
+				ModifyColor = modifyColor;
+				ShakeDuration = shakeDuration;
+				ColorOverTime = colorOverTime;
+				FlipX = flipX;
+				FlipY = flipY;
+			}
 
 			if (FlipX)
 			{

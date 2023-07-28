@@ -1,4 +1,4 @@
-#if MM_CINEMACHINE
+﻿#if MM_CINEMACHINE
 using Cinemachine;
 #endif
 using MoreMountains.Tools;

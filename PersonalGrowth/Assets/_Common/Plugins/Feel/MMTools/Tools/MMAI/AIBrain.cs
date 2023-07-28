@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,7 +69,7 @@ namespace MoreMountains.Tools
 			return decisions;
 		}
 
-		protected void OnEnable()
+		protected virtual void OnEnable()
 		{
 			if (ResetBrainOnEnable)
 			{

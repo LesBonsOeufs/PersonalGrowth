@@ -6,6 +6,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     {
         public DateTime lastUseDay = DateTime.MinValue;
         public int nLastTodaySteps = 0;
-        public int nCurrentSteps = 0;
+        public int stepCoinsCount = 0;
     }
 }

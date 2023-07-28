@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +19,8 @@ namespace MoreMountains.Tools
 		public AudioSource Source;
 		/// whether or not this sound will play over multiple scenes
 		public bool Persistent;
+
+		public float PlaybackTime;
+		public float PlaybackDuration;
 	}
 }

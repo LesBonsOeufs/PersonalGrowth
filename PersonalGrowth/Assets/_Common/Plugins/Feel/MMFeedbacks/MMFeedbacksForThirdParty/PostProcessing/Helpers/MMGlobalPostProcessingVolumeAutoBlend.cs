@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using MoreMountains.Feedbacks;
 #if MM_POSTPROCESSING
 using UnityEngine.Rendering.PostProcessing;

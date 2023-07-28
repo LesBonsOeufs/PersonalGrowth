@@ -1,4 +1,4 @@
-// Original FindMissingScriptsRecursively script by SimTex and Clement
+﻿// Original FindMissingScriptsRecursively script by SimTex and Clement
 // http://wiki.unity3d.com/index.php?title=FindMissingScripts
 
 #if UNITY_EDITOR

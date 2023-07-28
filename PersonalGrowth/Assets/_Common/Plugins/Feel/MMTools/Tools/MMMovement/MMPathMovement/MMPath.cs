@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +68,8 @@ namespace MoreMountains.Tools
 		public virtual bool CanMove { get; set; }
 		/// if this is true, this path has gone through its Initialization method
 		public virtual bool Initialized { get; set; }
+
+		public virtual int Direction => _direction;
 
 		protected bool _active=false;
 		protected IEnumerator<Vector3> _currentPoint;

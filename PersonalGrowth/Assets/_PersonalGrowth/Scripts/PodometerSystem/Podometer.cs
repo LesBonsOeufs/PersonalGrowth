@@ -10,22 +10,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         [SerializeField] private HealthConnectAARCaller healthConnect = default;
 
         public int NewStepsCount { get; private set; }
-
-        public int TodayStepsCount
-        {
-            get
-            {
-                return _todayStepsCount;
-            }
-
-            private set
-            {
-                _todayStepsCount = value;
-                OnStepsUpdate?.Invoke(this);
-            }
-        }
-        private int _todayStepsCount;
-
+        public int TodayStepsCount { get; private set; }
 
         public event PodometerEventHandler OnStepsUpdate;
 
@@ -52,9 +37,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
 
             NewStepsCount = nSteps - lLocalData.nLastTodaySteps;
             TodayStepsCount = nSteps;
+            OnStepsUpdate?.Invoke(this);
 
             lLocalData.nLastTodaySteps = nSteps;
-            lLocalData.nCurrentSteps += NewStepsCount;
             LocalDataSaver<LocalData>.SaveCurrentData();
         }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -174,19 +174,22 @@ namespace MoreMountains.FeedbacksForThirdParty
 				_originalRemapBlueOne = RemapBlueOne;
 			}
 
-			TimescaleMode = timescaleMode;
-			ShakeDuration = duration;
-			RelativeValues = relativeValues;
-			ShakeRed = shakeRed;
-			RemapRedZero = remapRedZero;
-			RemapRedOne = remapRedOne;
-			ShakeGreen = shakeGreen;
-			RemapGreenZero = remapGreenZero;
-			RemapGreenOne = remapGreenOne;
-			ShakeBlue = shakeBlue;
-			RemapBlueZero = remapBlueZero;
-			RemapBlueOne = remapBlueOne;
-			ForwardDirection = forwardDirection;
+			if (!OnlyUseShakerValues)
+			{
+				TimescaleMode = timescaleMode;
+				ShakeDuration = duration;
+				RelativeValues = relativeValues;
+				ShakeRed = shakeRed;
+				RemapRedZero = remapRedZero;
+				RemapRedOne = remapRedOne;
+				ShakeGreen = shakeGreen;
+				RemapGreenZero = remapGreenZero;
+				RemapGreenOne = remapGreenOne;
+				ShakeBlue = shakeBlue;
+				RemapBlueZero = remapBlueZero;
+				RemapBlueOne = remapBlueOne;
+				ForwardDirection = forwardDirection;
+			}
 
 			Play();
 		}

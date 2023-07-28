@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using UnityEngine;
@@ -113,13 +113,16 @@ namespace MoreMountains.Feedbacks
 				_originalRelativeEcho = RelativeEcho;
 			}
 
-			TimescaleMode = timescaleMode;
-			ShakeDuration = duration;
-			ShakeEcho = echoCurve;
-			RemapEchoZero = remapMin * feedbacksIntensity;
-			RemapEchoOne = remapMax * feedbacksIntensity;
-			RelativeEcho = relativeEcho;
-			ForwardDirection = forwardDirection;
+			if (!OnlyUseShakerValues)
+			{
+				TimescaleMode = timescaleMode;
+				ShakeDuration = duration;
+				ShakeEcho = echoCurve;
+				RemapEchoZero = remapMin * feedbacksIntensity;
+				RemapEchoOne = remapMax * feedbacksIntensity;
+				RelativeEcho = relativeEcho;
+				ForwardDirection = forwardDirection;
+			}
 
 			Play();
 		}

@@ -1,4 +1,4 @@
-using MoreMountains.FeedbacksForThirdParty;
+﻿using MoreMountains.FeedbacksForThirdParty;
 using MoreMountains.Tools;
 
 namespace MoreMountains.Feedbacks
