@@ -8,7 +8,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         private const int KCALORIES_PER_KILOMETER = 54;
 
         [Header("TMPs")]
-        [SerializeField] private TextMeshProUGUI stepsTmp = default;
+        [SerializeField] private TextMeshProUGUI[] newStepsTmps = default;
+        [SerializeField] private TextMeshProUGUI todayStepsTmp = default;
         [SerializeField] private TextMeshProUGUI kilometersTmp = default;
         [SerializeField] private TextMeshProUGUI kcaloriesTmp = default;
 
@@ -19,17 +20,23 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
 
         private void Podometer_OnStepsUpdate(Podometer sender)
         {
-            SetSteps(sender.TodayStepsCount);
+            SetSteps(sender);
         }
 
-        public void SetSteps(int nSteps)
+        public void SetSteps(Podometer podometer)
         {
-            float lNKilometers = (float)nSteps / STEPS_PER_KILOMETER;
+            int lNewStepsCount = podometer.NewStepsCount;
+            int lTodayStepsCount = podometer.TodayStepsCount;
+
+            float lNKilometers = (float)lTodayStepsCount / STEPS_PER_KILOMETER;
             float lNKCalories = lNKilometers * KCALORIES_PER_KILOMETER;
 
-            stepsTmp.text = nSteps.ToString();
+            foreach (TextMeshProUGUI newStepsTmp in newStepsTmps)
+                newStepsTmp.text = lNewStepsCount.ToString();
+
             kilometersTmp.text = lNKilometers.ToString();
             kcaloriesTmp.text = lNKCalories.ToString();
+            todayStepsTmp.text = lTodayStepsCount.ToString();
         }
 
         private void OnDestroy()

@@ -10,7 +10,9 @@ namespace Com.GabrielBernabeu.Common
 
         protected void Awake()
         {
+#if UNITY_ANDROID && !UNITY_EDITOR
             Initialize("com.gabrielbernabeu.hcwforunity.Plugin");
+#endif
         }
 
         private void Initialize(string pluginName)

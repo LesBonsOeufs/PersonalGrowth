@@ -1,9 +1,14 @@
 using Com.GabrielBernabeu.Common;
 using System;
+using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     public class HealthConnectAARCaller : AndroidAARCaller
     {
+#if UNITY_EDITOR
+        [SerializeField] private int editorTestSteps = 132;
+#endif
+
         private Action<int> todayStepsReceivedCallback;
 
         /// <summary>
@@ -19,7 +24,12 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         public void GetTodayStepsCount(Action<int> callback)
         {
             todayStepsReceivedCallback = callback;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
             Call("getTodayStepsCount");
+#else
+            todayStepsReceivedCallback?.Invoke(editorTestSteps);
+#endif
         }
     }
 }

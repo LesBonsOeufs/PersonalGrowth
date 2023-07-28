@@ -4,6 +4,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     [Serializable]
     public class LocalData
     {
-        public int nLastTodaySteps;
+        public int nLastTodaySteps = 0;
+        public int nCurrentSteps = 0;
     }
 }

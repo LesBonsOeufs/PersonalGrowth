@@ -156,7 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8259eaefd61040a42abb264abb959ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepsTmp: {fileID: 5304348729811287711}
+  newStepsTmps:
+  - {fileID: 5304348729811287711}
+  - {fileID: 0}
+  - {fileID: 0}
+  todayStepsTmp: {fileID: 0}
   kilometersTmp: {fileID: 1800511858474995527}
   kcaloriesTmp: {fileID: 1800511857456096734}
 --- !u!1001 &1800511857295502780
