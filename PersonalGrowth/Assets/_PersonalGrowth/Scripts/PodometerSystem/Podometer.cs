@@ -1,4 +1,5 @@
 using Com.GabrielBernabeu.Common.DataManagement;
+using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -43,11 +44,14 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         {
             LocalData lLocalData = LocalDataSaver<LocalData>.CurrentData;
 
-            if (lLocalData.nLastTodaySteps > nSteps)
+            if (lLocalData.lastUseDay < DateTime.Today)
+            {
+                lLocalData.lastUseDay = DateTime.Today;
                 lLocalData.nLastTodaySteps = 0;
+            }
 
-            TodayStepsCount = nSteps;
             NewStepsCount = nSteps - lLocalData.nLastTodaySteps;
+            TodayStepsCount = nSteps;
 
             lLocalData.nLastTodaySteps = nSteps;
             lLocalData.nCurrentSteps += NewStepsCount;

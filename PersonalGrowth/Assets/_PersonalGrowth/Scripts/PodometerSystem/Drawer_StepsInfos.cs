@@ -34,8 +34,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
             foreach (TextMeshProUGUI newStepsTmp in newStepsTmps)
                 newStepsTmp.text = lNewStepsCount.ToString();
 
-            kilometersTmp.text = lNKilometers.ToString();
-            kcaloriesTmp.text = lNKCalories.ToString();
+            kilometersTmp.text = lNKilometers.ToString("F2");
+            kcaloriesTmp.text = lNKCalories.ToString("F2");
             todayStepsTmp.text = lTodayStepsCount.ToString();
         }
 
