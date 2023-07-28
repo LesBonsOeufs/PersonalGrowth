@@ -1,7 +1,8 @@
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
-    [CreateAssetMenu(menuName = "F2P Marmite/UI/ScreenInitializer")]
+namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
+{
+    [CreateAssetMenu(menuName = "ScreensSwiper/SwipableScreenInfo")]
     public class SwipableScreenInfo : ScriptableObject
     {
         [SerializeField] private RectTransform _prefab = default;

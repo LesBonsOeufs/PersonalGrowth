@@ -8,18 +8,18 @@ using NaughtyAttributes;
 namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
     public class ScreensSwiper : MonoBehaviour
     {
-        [Foldout("Objects"), SerializeField] private Button screenBandLogoPrefab = default;
-        [Foldout("Objects"), SerializeField] private RectTransform screenBand = default;
         [Foldout("Objects"), SerializeField] private RectTransform screensContainer = default;
+        [Foldout("Objects"), SerializeField] private RectTransform screensBand = default;
+        [Foldout("Objects"), SerializeField] private Button screensBandIconPrefab = default;
 
         [Foldout("Screens"), SerializeField] private List<SwipableScreenInfo> leftScreens = default;
         [Foldout("Screens"), SerializeField] private SwipableScreenInfo centerScreen = default;
         [Foldout("Screens"), SerializeField] private List<SwipableScreenInfo> rightScreens = default;
 
-        [Foldout("Settings"), SerializeField, Range(0.1f, 3f)] private float timeToGoPosition = default;
+        [Foldout("Settings"), SerializeField, Range(0.1f, 3f)] private float timeToGoPosition = 1f;
         [Foldout("Settings"), SerializeField] private float buttonsSize = default;
-        [Foldout("Settings"), SerializeField, Range(1f, 100f)] private float currentButtonAddSize = default;
-        [Foldout("Settings"), SerializeField, Range(0.1f, 3)] private float timeToExpand = default;
+        [Foldout("Settings"), SerializeField, Range(1f, 100f)] private float currentButtonAddSize = 20f;
+        [Foldout("Settings"), SerializeField, Range(0.1f, 3)] private float timeToExpand = 0.5f;
 
         private List<Button> buttonScreens = new List<Button>();
         private CanvasScaler canvasScaler;
@@ -93,7 +93,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
 
         private Button InstantiateLogo(Sprite logo, int index)
         {
-            Button button = Instantiate(screenBandLogoPrefab, screenBand);
+            Button button = Instantiate(screensBandIconPrefab, screensBand);
 
             button.GetComponent<Image>().sprite = logo;
             button.onClick.AddListener(delegate { Button_OnClick(index); });

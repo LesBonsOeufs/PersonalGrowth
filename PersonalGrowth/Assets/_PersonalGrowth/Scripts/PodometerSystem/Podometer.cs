@@ -1,4 +1,5 @@
 using Com.GabrielBernabeu.Common.DataManagement;
+using NaughtyAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
