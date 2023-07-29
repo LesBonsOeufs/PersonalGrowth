@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CollectionScreen
   m_EditorClassIdentifier: 
   _prefab: {fileID: 6395531099188942445, guid: 6d7bcc185b3dc514aa88939fc6b9704a, type: 3}
-  _menuIcon: {fileID: 0}
+  _menuIcon: {fileID: -182423702, guid: ec8682b8c7872c143896c655b4705616, type: 3}

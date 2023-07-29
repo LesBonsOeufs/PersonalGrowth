@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
@@ -6,7 +7,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
     public class SwipableScreenInfo : ScriptableObject
     {
         [SerializeField] private RectTransform _prefab = default;
-        [SerializeField] private Sprite _menuIcon = default;
+        [SerializeField, ShowAssetPreview(1024, 1024)] private Sprite _menuIcon = default;
 
         public RectTransform Prefab => _prefab;
         public Sprite ScreensBandLogo => _menuIcon;

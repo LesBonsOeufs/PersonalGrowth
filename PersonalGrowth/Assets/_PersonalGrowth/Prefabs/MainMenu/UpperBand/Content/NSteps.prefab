@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NSteps
       objectReference: {fileID: 0}
+    - target: {fileID: 5863799888900318186, guid: f9f6c3e0cc5c91744b1ca0da85d43105, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1797694250, guid: ec8682b8c7872c143896c655b4705616, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f6c3e0cc5c91744b1ca0da85d43105, type: 3}
 --- !u!224 &3224254911967491522 stripped

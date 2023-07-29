@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_AnchorMin.x
@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 323.42
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_SizeDelta.y
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -119.125
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449145, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 579092562335449146, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_text
-      value: Today Steps
+      value: <sprite name=Logos_0> Today Steps
       objectReference: {fileID: 0}
     - target: {fileID: 579092562657861917, guid: 0a02838399cfb1d468443fc29735cd06, type: 3}
       propertyPath: m_text

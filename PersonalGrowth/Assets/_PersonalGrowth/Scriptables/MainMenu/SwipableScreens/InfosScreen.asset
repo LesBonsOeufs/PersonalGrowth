@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InfosScreen
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3173056653039622032, guid: c94ba6d04775fa5449563061d32dac40, type: 3}
-  _menuIcon: {fileID: 0}
+  _menuIcon: {fileID: -716611678, guid: ec8682b8c7872c143896c655b4705616, type: 3}

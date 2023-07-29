@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MapScreen
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3877486233249614177, guid: c342c8425c7b9cb44b3fd11c665940b1, type: 3}
-  _menuIcon: {fileID: 0}
+  _menuIcon: {fileID: -1309909326, guid: ec8682b8c7872c143896c655b4705616, type: 3}

@@ -159,8 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newStepsTmp: {fileID: 3173056652560514605}
   todayStepsTmp: {fileID: 2594548000387361825}
-  kilometersTmp: {fileID: 2594547999808645723}
-  kcaloriesTmp: {fileID: 2594547999794072570}
+  kilometersTmp: {fileID: 2594548000023038844}
+  kcaloriesTmp: {fileID: 2594548000042035933}
 --- !u!1001 &1020429360926203206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,6 +168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173056652325756963}
     m_Modifications:
+    - target: {fileID: 2459454877532529514, guid: 4ac9c05b7f266df4abe801c1381c3151, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2459454877646193230, guid: 4ac9c05b7f266df4abe801c1381c3151, type: 3}
       propertyPath: m_Name
       value: NNewSteps
@@ -369,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NTodayKcals
       objectReference: {fileID: 0}
+    - target: {fileID: 7206735970889816719, guid: 3d48fdb986ba74846ad80ed5c6450749, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d48fdb986ba74846ad80ed5c6450749, type: 3}
 --- !u!224 &2594547999794072569 stripped
@@ -376,9 +384,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7206735970399648682, guid: 3d48fdb986ba74846ad80ed5c6450749, type: 3}
   m_PrefabInstance: {fileID: 4612485940682584147}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2594547999794072570 stripped
+--- !u!114 &2594548000042035933 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7206735970399648681, guid: 3d48fdb986ba74846ad80ed5c6450749, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7206735970889816718, guid: 3d48fdb986ba74846ad80ed5c6450749, type: 3}
   m_PrefabInstance: {fileID: 4612485940682584147}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -394,6 +402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173056652325756963}
     m_Modifications:
+    - target: {fileID: 8703669331770177400, guid: 79874d6654c4c194ea79567df736375a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703669331770177400, guid: 79874d6654c4c194ea79567df736375a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30.000214
+      objectReference: {fileID: 0}
     - target: {fileID: 8703669331957306972, guid: 79874d6654c4c194ea79567df736375a, type: 3}
       propertyPath: m_Name
       value: NTodaySteps
@@ -507,6 +523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173056652325756963}
     m_Modifications:
+    - target: {fileID: 5690334059950668667, guid: f0067fc742ebedd4a9d6514211345230, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5690334060207135326, guid: f0067fc742ebedd4a9d6514211345230, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -602,9 +622,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5690334060207135326, guid: f0067fc742ebedd4a9d6514211345230, type: 3}
   m_PrefabInstance: {fileID: 7708349489374343174}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2594547999808645723 stripped
+--- !u!114 &2594548000023038844 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5690334060207135325, guid: f0067fc742ebedd4a9d6514211345230, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5690334059950668666, guid: f0067fc742ebedd4a9d6514211345230, type: 3}
   m_PrefabInstance: {fileID: 7708349489374343174}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
