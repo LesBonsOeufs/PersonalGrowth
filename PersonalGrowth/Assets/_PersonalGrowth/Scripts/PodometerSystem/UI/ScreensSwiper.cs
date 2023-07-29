@@ -89,7 +89,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
             int lLeftCount = leftScreens.Count;
             int lRightCount = rightScreens.Count;
 
-            RectTransform mainButtonTransform;
+            RectTransform lMainButtonTransform;
 
             if (lLeftCount == 0 && lRightCount == 0)
             {
@@ -97,25 +97,25 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
                 return;
             }
 
-            SwipableScreenInfo currentScreen;
-            float screenSize = canvasScaler.referenceResolution.x;
+            SwipableScreenInfo lCurrentScreen;
+            float lScreenWidth = canvasScaler.referenceResolution.x;
 
             for (int i = 0; i < lLeftCount; i++)
             {
-                currentScreen = leftScreens[i];
-                InstantiateScreen(currentScreen, (-lLeftCount + i) * screenSize, -lLeftCount + i);
+                lCurrentScreen = leftScreens[i];
+                InstantiateScreen(lCurrentScreen, (-lLeftCount + i) * lScreenWidth, -lLeftCount + i);
             }
 
             InstantiateScreen(centerScreen, 0f, 0);
 
             screensButtonsCenterIndex = screensButtons.Count - 1;
-            mainButtonTransform = screensButtons[screensButtonsCenterIndex].GetComponent<RectTransform>();
-            mainButtonTransform.sizeDelta = Vector2.one * (currentButtonAddedSize + buttonsBaseSize);
+            lMainButtonTransform = screensButtons[screensButtonsCenterIndex].GetComponent<RectTransform>();
+            lMainButtonTransform.sizeDelta = Vector2.one * (currentButtonAddedSize + buttonsBaseSize);
 
             for (int i = 0; i < lRightCount; i++)
             {
-                currentScreen = rightScreens[i];
-                InstantiateScreen(currentScreen, i + 1 * screenSize, i + 1);
+                lCurrentScreen = rightScreens[i];
+                InstantiateScreen(lCurrentScreen, i + 1 * lScreenWidth, i + 1);
             }
         }
 
