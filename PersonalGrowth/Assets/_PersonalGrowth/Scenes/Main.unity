@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 437751206}
   - component: {fileID: 437751208}
   - component: {fileID: 437751207}
+  - component: {fileID: 437751209}
   m_Layer: 5
   m_Name: ScreensBand
   m_TagString: Untagged
@@ -907,6 +908,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437751205}
   m_CullTransparentMesh: 1
+--- !u!114 &437751209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437751205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &485954961
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,17 +984,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screensContainer: {fileID: 485954962}
-  screensBand: {fileID: 437751206}
+  screensBand: {fileID: 437751209}
   screensBandIconPrefab: {fileID: 3387830125605934869, guid: 3ab1a7c721a084e40ab03dc1edaa995b, type: 3}
   leftScreens:
   - {fileID: 11400000, guid: f019e6f6156b5d14b85448dbbffb3eae, type: 2}
   centerScreen: {fileID: 11400000, guid: 2891e4383bbf75f42a3d8c4fb89c7c05, type: 2}
   rightScreens:
   - {fileID: 11400000, guid: 490c5d1b4761db8469ff8fe5ab230129, type: 2}
-  timeToGoPosition: 1
-  buttonsSize: 0
-  currentButtonAddSize: 20
-  timeToExpand: 0.5
+  buttonsBaseSize: 100
+  currentButtonAddedSize: 40
+  timeToGoToScreen: 1
+  buttonTimeToExpand: 1
+  swipePercentThreshold: 0.2
 --- !u!224 &526127047 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5304348729495836950, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}

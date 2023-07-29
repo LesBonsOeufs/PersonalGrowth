@@ -2,44 +2,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.ComponentModel;
 using NaughtyAttributes;
+using UnityEngine.EventSystems;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
-    public class ScreensSwiper : MonoBehaviour
+namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
+{
+    public class ScreensSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         [Foldout("Objects"), SerializeField] private RectTransform screensContainer = default;
-        [Foldout("Objects"), SerializeField] private RectTransform screensBand = default;
+        [Foldout("Objects"), SerializeField] private LayoutGroup screensBand = default;
         [Foldout("Objects"), SerializeField] private Button screensBandIconPrefab = default;
 
         [Foldout("Screens"), SerializeField] private List<SwipableScreenInfo> leftScreens = default;
         [Foldout("Screens"), SerializeField] private SwipableScreenInfo centerScreen = default;
         [Foldout("Screens"), SerializeField] private List<SwipableScreenInfo> rightScreens = default;
 
-        [Foldout("Settings"), SerializeField, Range(0.1f, 3f)] private float timeToGoPosition = 1f;
-        [Foldout("Settings"), SerializeField] private float buttonsSize = default;
-        [Foldout("Settings"), SerializeField, Range(1f, 100f)] private float currentButtonAddSize = 20f;
-        [Foldout("Settings"), SerializeField, Range(0.1f, 3)] private float timeToExpand = 0.5f;
+        [Foldout("Screens icons settings"), SerializeField, Range(1f, 300f)] private float buttonsBaseSize = 100f;
+        [Foldout("Screens icons settings"), SerializeField, Range(1f, 300f)] private float currentButtonAddedSize = 30f;
+        [Foldout("Screens icons settings"), SerializeField, Range(0.1f, 5f)] private float timeToGoToScreen = 1f;
+        [Foldout("Screens icons settings"), SerializeField, Range(0.1f, 5f)] private float buttonTimeToExpand = 1f;
 
-        private List<Button> buttonScreens = new List<Button>();
+        [SerializeField, Range(0f, 1f)] private float swipePercentThreshold = 0.2f;
+
         private CanvasScaler canvasScaler;
+        private List<Button> screensButtons = new List<Button>();
+        private int screensButtonsCenterIndex;
 
-        private int indexPosition = 0;
-        private int startIndex;
-
-        private void Button_OnClick(int index)
+        private int IndexPosition
         {
-            if (index == indexPosition)
-                return;
+            get
+            {
+                return _indexPosition;
+            }
 
-            ChangeCurrentButton(indexPosition, index);
+            set
+            {
+                _indexPosition = value;
 
-            indexPosition = index;
-
-            screensContainer.GetComponent<RectTransform>()
-                .DOAnchorPos(new Vector2(canvasScaler.referenceResolution.x * indexPosition, 0f), timeToGoPosition)
+                screensContainer.DOAnchorPos(GetIndexAnchoredPosition(_indexPosition), timeToGoToScreen)
                 .SetUpdate(true);
+            }
         }
+        private int _indexPosition = 0;
 
         protected void Start()
         {
@@ -47,14 +51,45 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
             InitScreens();
         }
 
+        public void OnDrag(PointerEventData eventData)
+        {
+            float lDifference = eventData.pressPosition.x - eventData.position.x;
+            screensContainer.anchoredPosition = GetIndexAnchoredPosition(IndexPosition) - new Vector2(lDifference, 0f);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            float lPercentage = (eventData.position.x - eventData.pressPosition.x) / Screen.width;
+            int lNewIndex = IndexPosition;
+
+            if (Mathf.Abs(lPercentage) >= swipePercentThreshold)
+            {
+                if (lPercentage > 0f && screensButtonsCenterIndex + lNewIndex > 0)
+                    lNewIndex--;
+                else if (lPercentage < 0f && screensButtonsCenterIndex + lNewIndex < screensButtons.Count - 1)
+                    lNewIndex++;
+            }
+
+            IndexPosition = lNewIndex;
+        }
+
+        private void Button_OnClick(int index)
+        {
+            if (index == IndexPosition)
+                return;
+
+            ChangeCurrentButton(IndexPosition, index);
+            IndexPosition = index;
+        }
+
         private void InitScreens()
         {
-            float leftLength = leftScreens.Count;
-            float rightLength = rightScreens.Count;
+            int lLeftCount = leftScreens.Count;
+            int lRightCount = rightScreens.Count;
 
             RectTransform mainButtonTransform;
 
-            if (leftLength == 0 && rightLength == 0)
+            if (lLeftCount == 0 && lRightCount == 0)
             {
                 InstantiateScreen(centerScreen, 0f, 0);
                 return;
@@ -63,60 +98,66 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI {
             SwipableScreenInfo currentScreen;
             float screenSize = canvasScaler.referenceResolution.x;
 
-            for (int i = 0; i < leftLength; i++)
+            for (int i = 0; i < lLeftCount; i++)
             {
                 currentScreen = leftScreens[i];
-                InstantiateScreen(currentScreen, (leftLength - i) * -screenSize, (int)leftLength - i);
+                InstantiateScreen(currentScreen, (-lLeftCount + i) * screenSize, -lLeftCount + i);
             }
 
             InstantiateScreen(centerScreen, 0f, 0);
 
-            startIndex = buttonScreens.Count - 1;
-            mainButtonTransform = buttonScreens[startIndex].GetComponent<RectTransform>();
-            mainButtonTransform.sizeDelta = Vector2.one * (currentButtonAddSize + buttonsSize);
+            screensButtonsCenterIndex = screensButtons.Count - 1;
+            mainButtonTransform = screensButtons[screensButtonsCenterIndex].GetComponent<RectTransform>();
+            mainButtonTransform.sizeDelta = Vector2.one * (currentButtonAddedSize + buttonsBaseSize);
 
-            for (int i = 0; i < rightLength; i++)
+            for (int i = 0; i < lRightCount; i++)
             {
                 currentScreen = rightScreens[i];
-                InstantiateScreen(currentScreen, (i + 1) * screenSize, -(i + 1));
+                InstantiateScreen(currentScreen, i + 1 * screenSize, i + 1);
             }
         }
 
         private void InstantiateScreen(SwipableScreenInfo screen, float positionX, int index)
         {
-            RectTransform currentScreen = Instantiate(screen.Prefab, screensContainer).GetComponent<RectTransform>();
-            currentScreen.anchoredPosition += Vector2.right * positionX;
+            RectTransform lCurrentScreen = Instantiate(screen.Prefab, screensContainer);
+            lCurrentScreen.anchoredPosition += Vector2.right * positionX;
 
-            Button currentScreenButton = InstantiateLogo(screen.ScreensBandLogo, index);
-            buttonScreens.Add(currentScreenButton);
+            Button lCurrentScreenButton = InstantiateIcon(screen.ScreensBandLogo, index);
+            screensButtons.Add(lCurrentScreenButton);
         }
 
-        private Button InstantiateLogo(Sprite logo, int index)
+        private Button InstantiateIcon(Sprite icon, int index)
         {
-            Button button = Instantiate(screensBandIconPrefab, screensBand);
+            Button lButton = Instantiate(screensBandIconPrefab, screensBand.transform);
+            lButton.GetComponent<RectTransform>().sizeDelta = Vector2.one * buttonsBaseSize;
 
-            button.GetComponent<Image>().sprite = logo;
-            button.onClick.AddListener(delegate { Button_OnClick(index); });
+            lButton.GetComponent<Image>().sprite = icon;
+            lButton.onClick.AddListener(delegate { Button_OnClick(index); });
 
-            return button;
+            return lButton;
         }
 
         private void ChangeCurrentButton(int currentIndex, int nextIndex)
         {
-            RectTransform mainButtonTransform = buttonScreens[startIndex - currentIndex].GetComponent<RectTransform>();
-            mainButtonTransform.DOSizeDelta(Vector2.one * buttonsSize, timeToExpand).SetUpdate(true);
+            RectTransform lLastMainButtonTransform = screensButtons[screensButtonsCenterIndex + currentIndex].GetComponent<RectTransform>();
+            lLastMainButtonTransform.DOSizeDelta(Vector2.one * buttonsBaseSize, buttonTimeToExpand).SetUpdate(true);
 
-            mainButtonTransform = buttonScreens[startIndex - nextIndex].GetComponent<RectTransform>();
-            mainButtonTransform.DOSizeDelta(Vector2.one * (currentButtonAddSize + buttonsSize), timeToExpand).SetUpdate(true);
+            RectTransform lMainButtonTransform = screensButtons[screensButtonsCenterIndex + nextIndex].GetComponent<RectTransform>();
+            lMainButtonTransform.DOSizeDelta(Vector2.one * (currentButtonAddedSize + buttonsBaseSize), buttonTimeToExpand).SetUpdate(true);
+        }
+
+        private Vector2 GetIndexAnchoredPosition(int index)
+        {
+            return new Vector2(-canvasScaler.referenceResolution.x * index, 0f);
         }
 
         private void OnDestroy()
         {
-            int length = buttonScreens.Count;
+            int lButtonsCount = screensButtons.Count;
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < lButtonsCount; i++)
             {
-                buttonScreens[i].onClick.RemoveAllListeners();
+                screensButtons[i].onClick.RemoveAllListeners();
             }
         }
     }
