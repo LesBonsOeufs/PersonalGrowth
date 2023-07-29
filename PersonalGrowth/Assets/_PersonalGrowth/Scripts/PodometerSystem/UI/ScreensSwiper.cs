@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine.EventSystems;
+using System;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
 {
@@ -37,10 +38,12 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
 
             set
             {
+                ChangeCurrentButton(_indexPosition, value);
+
                 _indexPosition = value;
 
                 screensContainer.DOAnchorPos(GetIndexAnchoredPosition(_indexPosition), timeToGoToScreen)
-                .SetUpdate(true);
+                    .SetUpdate(true);
             }
         }
         private int _indexPosition = 0;
@@ -78,7 +81,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
             if (index == IndexPosition)
                 return;
 
-            ChangeCurrentButton(IndexPosition, index);
             IndexPosition = index;
         }
 
@@ -137,12 +139,12 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI
             return lButton;
         }
 
-        private void ChangeCurrentButton(int currentIndex, int nextIndex)
+        private void ChangeCurrentButton(int lastIndex, int newIndex)
         {
-            RectTransform lLastMainButtonTransform = screensButtons[screensButtonsCenterIndex + currentIndex].GetComponent<RectTransform>();
+            RectTransform lLastMainButtonTransform = screensButtons[screensButtonsCenterIndex + lastIndex].GetComponent<RectTransform>();
             lLastMainButtonTransform.DOSizeDelta(Vector2.one * buttonsBaseSize, buttonTimeToExpand).SetUpdate(true);
 
-            RectTransform lMainButtonTransform = screensButtons[screensButtonsCenterIndex + nextIndex].GetComponent<RectTransform>();
+            RectTransform lMainButtonTransform = screensButtons[screensButtonsCenterIndex + newIndex].GetComponent<RectTransform>();
             lMainButtonTransform.DOSizeDelta(Vector2.one * (currentButtonAddedSize + buttonsBaseSize), buttonTimeToExpand).SetUpdate(true);
         }
 
