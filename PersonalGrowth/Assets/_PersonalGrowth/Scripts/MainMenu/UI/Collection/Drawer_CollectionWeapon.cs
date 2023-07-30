@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Com.GabrielBernabeu
+namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu
 {
     public class Drawer_CollectionWeapon : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private WeaponInfo info = default;
 
-        // Update is called once per frame
-        void Update()
+        [Header("Content")]
+        [SerializeField] private Image weaponImage = default;
+        [SerializeField] private TextMeshProUGUI priceTmp = default;
+
+        private void OnValidate()
         {
-        
+            weaponImage.sprite = info.Sprite;
+            priceTmp.text = info.Price.ToString();
         }
     }
 }
