@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public class Ball : MonoBehaviour
     {
         [SerializeField] private ParticleSystem hitParticles = default;

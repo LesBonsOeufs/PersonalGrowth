@@ -2,8 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public delegate void DragShootEventHandler(DragShoot sender);
 
     [RequireComponent(typeof(Rigidbody))]

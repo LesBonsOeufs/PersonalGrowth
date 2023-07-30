@@ -1,7 +1,6 @@
-using Com.GabrielBernabeu.PersonalGrowth.Battle;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     [CreateAssetMenu(fileName = "Scriptables", menuName = "ScriptableObjects/UnitInfos", order = 1)]
     public class UnitInfos : ScriptableObject
     {

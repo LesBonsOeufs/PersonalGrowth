@@ -2,7 +2,7 @@ using NaughtyAttributes;
 using System.Net;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     [RequireComponent(typeof(RectTransform))]
     public class TrailToTarget : Singleton<TrailToTarget>
     {

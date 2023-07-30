@@ -3,8 +3,7 @@ using MoreMountains.Feedbacks;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public class EnemyBall : Ball
     {
         [SerializeField] private UnitInfos infos = default;

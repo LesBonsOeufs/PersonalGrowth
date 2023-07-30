@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public class LevelMaker : MonoBehaviour
     {
         public static LevelInfos currentLevel = null;

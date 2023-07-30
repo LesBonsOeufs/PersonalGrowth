@@ -1,10 +1,10 @@
+using Com.GabrielBernabeu.PersonalGrowth.PodometerSystem;
 using MoreMountains.Feedbacks;
 using System;
 using TMPro;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
     public class StepCoinsManager : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI stepCoinsTmp = default;

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public class PlayerSpawner : MonoBehaviour
     {
         [SerializeField] private Transform spawnPos = default;

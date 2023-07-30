@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     [CreateAssetMenu(fileName = "Scriptables", menuName = "ScriptableObjects/CharacterInfos", order = 1)]
     public class CharacterInfos : ScriptableObject
     {

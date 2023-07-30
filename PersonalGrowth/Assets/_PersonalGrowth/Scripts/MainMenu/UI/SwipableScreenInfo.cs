@@ -1,8 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
     [CreateAssetMenu(menuName = "ScreensSwiper/SwipableScreenInfo")]
     public class SwipableScreenInfo : ScriptableObject
     {

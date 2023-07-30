@@ -212,7 +212,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   AnimateY: 1
   RemapYZero: {x: 0, y: 0}
-  RemapYOne: {x: 0.6, y: 0.6}
+  RemapYOne: {x: 0.4, y: 0.4}
   AnimateYCurve:
     serializedVersion: 2
     m_Curve:
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f11bb6c5e6c7764a8415fc4bd2fb98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorTestSteps: 145
+  editorTestSteps: 160
 --- !u!1 &1390034403
 GameObject:
   m_ObjectHideFlags: 0

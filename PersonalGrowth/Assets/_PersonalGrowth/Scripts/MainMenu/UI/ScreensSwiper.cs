@@ -6,8 +6,7 @@ using NaughtyAttributes;
 using UnityEngine.EventSystems;
 using System;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem.UI 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
     public class ScreensSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         [Foldout("Objects"), SerializeField] private RectTransform screensContainer = default;

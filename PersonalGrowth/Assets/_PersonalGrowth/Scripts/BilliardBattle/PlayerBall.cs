@@ -2,8 +2,7 @@ using DG.Tweening;
 using System.Xml.Schema;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public delegate void PlayerBallEventHandler(PlayerBall sender);
 
     [RequireComponent(typeof(DragShoot))]

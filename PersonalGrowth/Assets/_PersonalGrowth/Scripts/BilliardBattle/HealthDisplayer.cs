@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
+namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {
     public class HealthDisplayer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI healthTmp = default;
