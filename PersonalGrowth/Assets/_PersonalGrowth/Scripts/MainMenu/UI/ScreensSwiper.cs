@@ -7,11 +7,12 @@ using UnityEngine.EventSystems;
 using System;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
-    public class ScreensSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
+    public class ScreensSwiper : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [Foldout("Objects"), SerializeField] private RectTransform screensContainer = default;
-        [Foldout("Objects"), SerializeField] private LayoutGroup screensBand = default;
+        [Foldout("Objects"), SerializeField] private LayoutGroup screensIconsContainer = default;
         [Foldout("Objects"), SerializeField] private Button screensBandIconPrefab = default;
+        [Foldout("Objects"), SerializeField] private RectTransform screensBandSelector = default;
 
         [Foldout("Screens"), SerializeField] private List<SwipableScreenInfo> leftScreens = default;
         [Foldout("Screens"), SerializeField] private SwipableScreenInfo centerScreen = default;
@@ -28,6 +29,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
         private List<Button> screensButtons = new List<Button>();
         private int screensButtonsCenterIndex;
 
+        private Vector2 beginDragAnchoredPos;
+
         private int IndexPosition
         {
             get
@@ -41,8 +44,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
 
                 _indexPosition = value;
 
-                screensContainer.DOAnchorPos(GetIndexAnchoredPosition(_indexPosition), timeToGoToScreen)
-                    .SetUpdate(true);
+                screensContainer.DOAnchorPos(GetAnchoredPosFromIndex(_indexPosition), timeToGoToScreen)
+                    .SetUpdate(true).OnUpdate(UpdateSelectorPos);
             }
         }
         private int _indexPosition = 0;
@@ -53,10 +56,17 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
             InitScreens();
         }
 
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            screensContainer.DOKill(false);
+            beginDragAnchoredPos = screensContainer.anchoredPosition;
+        }
+
         public void OnDrag(PointerEventData eventData)
         {
             float lDifference = eventData.pressPosition.x - eventData.position.x;
-            screensContainer.anchoredPosition = GetIndexAnchoredPosition(IndexPosition) - new Vector2(lDifference, 0f);
+            screensContainer.anchoredPosition = beginDragAnchoredPos - new Vector2(lDifference, 0f);
+            UpdateSelectorPos();
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -88,8 +98,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
             int lLeftCount = leftScreens.Count;
             int lRightCount = rightScreens.Count;
 
-            RectTransform lMainButtonTransform;
-
             if (lLeftCount == 0 && lRightCount == 0)
             {
                 InstantiateScreen(centerScreen, 0f, 0);
@@ -98,6 +106,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
 
             SwipableScreenInfo lCurrentScreen;
             float lScreenWidth = canvasScaler.referenceResolution.x;
+
 
             for (int i = 0; i < lLeftCount; i++)
             {
@@ -108,14 +117,17 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
             InstantiateScreen(centerScreen, 0f, 0);
 
             screensButtonsCenterIndex = screensButtons.Count - 1;
-            lMainButtonTransform = screensButtons[screensButtonsCenterIndex].GetComponent<RectTransform>();
+
+            RectTransform lMainButtonTransform = screensButtons[screensButtonsCenterIndex].GetComponent<RectTransform>();
             lMainButtonTransform.sizeDelta = Vector2.one * (currentButtonAddedSize + buttonsBaseSize);
 
             for (int i = 0; i < lRightCount; i++)
             {
                 lCurrentScreen = rightScreens[i];
-                InstantiateScreen(lCurrentScreen, i + 1 * lScreenWidth, i + 1);
+                InstantiateScreen(lCurrentScreen, (i + 1) * lScreenWidth, i + 1);
             }
+
+            screensBandSelector.sizeDelta = new Vector2(lScreenWidth / screensButtons.Count, screensBandSelector.sizeDelta.y);
         }
 
         private void InstantiateScreen(SwipableScreenInfo screen, float positionX, int index)
@@ -129,7 +141,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
 
         private Button InstantiateIcon(Sprite icon, int index)
         {
-            Button lButton = Instantiate(screensBandIconPrefab, screensBand.transform);
+            Button lButton = Instantiate(screensBandIconPrefab, screensIconsContainer.transform);
             lButton.GetComponent<RectTransform>().sizeDelta = Vector2.one * buttonsBaseSize;
 
             lButton.GetComponent<Image>().sprite = icon;
@@ -147,9 +159,26 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
             lMainButtonTransform.DOSizeDelta(Vector2.one * (currentButtonAddedSize + buttonsBaseSize), buttonTimeToExpand).SetUpdate(true);
         }
 
-        private Vector2 GetIndexAnchoredPosition(int index)
+        private void UpdateSelectorPos()
+        {
+            float lScreenHalfWidth = canvasScaler.referenceResolution.x * 0.5f;
+            float lSelectorHalfWidth = screensBandSelector.sizeDelta.x * 0.5f;
+            float lScreensButtonsRatio = (GetIndexFromAnchoredXPos(screensContainer.anchoredPosition.x) + screensButtonsCenterIndex) / (screensButtons.Count - 1);
+
+            screensBandSelector.anchoredPosition = new Vector2(
+                Mathf.LerpUnclamped(-lScreenHalfWidth + lSelectorHalfWidth, lScreenHalfWidth - lSelectorHalfWidth, lScreensButtonsRatio), 
+                screensBandSelector.anchoredPosition.y
+                );
+        }
+
+        private Vector2 GetAnchoredPosFromIndex(int index)
         {
             return new Vector2(-canvasScaler.referenceResolution.x * index, 0f);
+        }
+
+        private float GetIndexFromAnchoredXPos(float anchoredPosX)
+        {
+            return anchoredPosX / -canvasScaler.referenceResolution.x;
         }
 
         private void OnDestroy()
