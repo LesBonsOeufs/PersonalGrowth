@@ -1,3 +1,4 @@
+using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,19 @@ using UnityEngine;
 namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
     public class CollectionInventory : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private Drawer_InventoryWeapon inventoryWeaponPrefab = default;
+        [SerializeField] private int nMaxWeapons = 3;
 
-        // Update is called once per frame
-        void Update()
+        private List<Drawer_InventoryWeapon> weapons = new List<Drawer_InventoryWeapon>();
+
+        public void AddWeapon(WeaponInfo info)
         {
-        
+            if (weapons.Count >= nMaxWeapons)
+                return;
+
+            Drawer_InventoryWeapon lWeapon = Instantiate(inventoryWeaponPrefab);
+            lWeapon.SetInfos(info);
+            weapons.Add(lWeapon);
         }
     }
 }

@@ -17,6 +17,13 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
             Podometer.Instance.OnStepsUpdate += Podometer_OnStepsUpdate;
         }
 
+        public void Consume(int nCoins)
+        {
+            Count -= nCoins;
+            LocalDataSaver<LocalData>.CurrentData.stepCoinsCount = Count;
+            LocalDataSaver<LocalData>.SaveCurrentData();
+        }
+
         private void Podometer_OnStepsUpdate(Podometer sender)
         {
             LocalData lData = LocalDataSaver<LocalData>.CurrentData;

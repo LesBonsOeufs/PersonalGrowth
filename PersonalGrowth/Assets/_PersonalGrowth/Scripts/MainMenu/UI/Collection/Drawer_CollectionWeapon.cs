@@ -1,22 +1,15 @@
 using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
-using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu
-{
-    public class Drawer_CollectionWeapon : MonoBehaviour
+namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
+    public class Drawer_CollectionWeapon : Drawer_InventoryWeapon
     {
-        [SerializeField] private WeaponInfo info = default;
-
-        [Header("Content")]
-        [SerializeField] private Image weaponImage = default;
         [SerializeField] private TextMeshProUGUI priceTmp = default;
 
-        private void OnValidate()
+        public override void SetInfos(WeaponInfo info)
         {
-            weaponImage.sprite = info.Sprite;
+            base.SetInfos(info);
             priceTmp.text = info.Price.ToString();
         }
     }
