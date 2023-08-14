@@ -1,0 +1,63 @@
+using Com.GabrielBernabeu;
+using Com.GabrielBernabeu.PersonalGrowth;
+using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using Com.GabrielBernabeu.PersonalGrowth.MainMenu;
+using Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection;
+using MoreMountains.Feedbacks;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CollectionPopUp : MonoBehaviour
+{
+    [SerializeField] private Button buttonYes;
+    [SerializeField] private Button buttonNo;
+    [SerializeField] private Drawer_CollectionWeapon weaponDrawer;
+    [SerializeField] private CollectionInventory inventory;
+
+    private WeaponInfo selectedWeapon;
+
+    private void Awake()
+    {
+        CollectionWeapon.OnChosen += CollectionWeapon_OnChosen;
+        buttonYes.onClick.AddListener(ButtonYes_OnClick);
+        buttonNo.onClick.AddListener(ButtonNo_OnClick);
+
+        gameObject.SetActive(false);
+    }
+
+    private void CollectionWeapon_OnChosen(WeaponInfo info)
+    {
+        selectedWeapon = info;
+        weaponDrawer.SetInfos(selectedWeapon);
+        gameObject.SetActive(true);
+    }
+
+    private void ButtonYes_OnClick()
+    {
+        if (inventory.IsFull)
+        {
+            GeneralTextFeedback.Instance.MakeText("Inventory is already full!");
+            return;
+        }
+
+        if (StepCoinsManager.Instance.Count < selectedWeapon.Price)
+        {
+            GeneralTextFeedback.Instance.MakeText("You do not have enough step-coins!");
+            return;
+        }
+
+        StepCoinsManager.Instance.Consume(selectedWeapon.Price);
+        inventory.AddWeapon(selectedWeapon);
+        gameObject.SetActive(false);
+    }
+
+    private void ButtonNo_OnClick() 
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        CollectionWeapon.OnChosen -= CollectionWeapon_OnChosen;
+    }
+}

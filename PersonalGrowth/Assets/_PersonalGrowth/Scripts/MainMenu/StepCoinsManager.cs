@@ -14,13 +14,15 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
         protected override void Awake()
         {
             base.Awake();
-
             Podometer.Instance.OnStepsUpdate += Podometer_OnStepsUpdate;
         }
 
         public void Consume(int nCoins)
         {
+            int lLastCoinsCount = Count;
             Count -= nCoins;
+
+            NewCoinsAnim(lLastCoinsCount, -nCoins);
             LocalDataSaver<LocalData>.CurrentData.stepCoinsCount = Count;
             LocalDataSaver<LocalData>.SaveCurrentData();
         }
@@ -29,7 +31,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
         {
             LocalData lData = LocalDataSaver<LocalData>.CurrentData;
             int lLastCoinsCount = lData.stepCoinsCount;
-
             stepCoinsTmp.text = lLastCoinsCount.ToString();
 
             if (sender.NewStepsCount > 0)
@@ -41,13 +42,15 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
             Count = lData.stepCoinsCount;
         }
 
-        private void NewCoinsAnim(int lastCoinsCount, int newStepsCount)
+        private void NewCoinsAnim(int startCoins, int deltaCoins)
         {
             MMF_FloatingText lFloatingText = onNewStepsFeedbacks.GetFeedbackOfType<MMF_FloatingText>();
             MMF_TMPCountTo lTMPCountTo = onNewStepsFeedbacks.GetFeedbackOfType<MMF_TMPCountTo>();
-            lFloatingText.Value = $"+{newStepsCount}";
-            lTMPCountTo.CountFrom = lastCoinsCount;
-            lTMPCountTo.CountTo = lastCoinsCount + newStepsCount;
+            string lPrefix = Mathf.Sign(deltaCoins) == 1 ? "+" : "-";
+
+            lFloatingText.Value = $"{lPrefix}{deltaCoins}";
+            lTMPCountTo.CountFrom = startCoins;
+            lTMPCountTo.CountTo = startCoins + deltaCoins;
 
             onNewStepsFeedbacks.PlayFeedbacks();
         }

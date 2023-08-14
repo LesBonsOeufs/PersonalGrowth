@@ -1,5 +1,4 @@
 using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
             if (weapons.Count >= nMaxWeapons)
                 return;
 
-            Drawer_InventoryWeapon lWeapon = Instantiate(inventoryWeaponPrefab);
+            Drawer_InventoryWeapon lWeapon = Instantiate(inventoryWeaponPrefab, transform);
             lWeapon.SetInfos(info);
             weapons.Add(lWeapon);
         }
