@@ -1,19 +1,20 @@
 using Com.GabrielBernabeu.PersonalGrowth.PodometerSystem;
 using MoreMountains.Feedbacks;
-using System;
 using TMPro;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
-    public class StepCoinsManager : MonoBehaviour
+    public class StepCoinsManager : Singleton<StepCoinsManager>
     {
         [SerializeField] private TextMeshProUGUI stepCoinsTmp = default;
         [SerializeField] private MMF_Player onNewStepsFeedbacks = default;
 
         public int Count { get; private set; }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             Podometer.Instance.OnStepsUpdate += Podometer_OnStepsUpdate;
         }
 
@@ -51,8 +52,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
             onNewStepsFeedbacks.PlayFeedbacks();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
+
             if (Podometer.Instance != null)
                 Podometer.Instance.OnStepsUpdate -= Podometer_OnStepsUpdate;
         }

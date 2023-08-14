@@ -9,6 +9,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
         [SerializeField] private Drawer_InventoryWeapon inventoryWeaponPrefab = default;
         [SerializeField] private int nMaxWeapons = 3;
 
+        public bool IsFull => weapons.Count >= nMaxWeapons;
+
         private List<Drawer_InventoryWeapon> weapons = new List<Drawer_InventoryWeapon>();
 
         public void AddWeapon(WeaponInfo info)

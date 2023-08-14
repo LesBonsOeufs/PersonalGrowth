@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 80
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5f6a46fefd60c5a45874f814e3f919c9, type: 2}
   m_sharedMaterial: {fileID: -6597686502121633793, guid: 5f6a46fefd60c5a45874f814e3f919c9, type: 2}
@@ -310,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 5049085662715361306, guid: 518a712ce5054f74eb85ac3101d42705, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1779222809, guid: a5545b5f712bbaf469dc283ec5e017d8, type: 3}
+      objectReference: {fileID: -1511513465, guid: a5545b5f712bbaf469dc283ec5e017d8, type: 3}
     - target: {fileID: 8592443426837292885, guid: 518a712ce5054f74eb85ac3101d42705, type: 3}
       propertyPath: info
       value: 
@@ -344,9 +344,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dff5e14027a21044acb7edcb8bb1cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 11400000, guid: dd7b7887f9bec4d45ba12424fd899232, type: 2}
   weaponImage: {fileID: 5327935549894542769}
   priceTmp: {fileID: 5694329518557406471}
+--- !u!114 &7297030162105271659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739556487176596153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd8c0ac2cfd9fd4fa2d42f226826398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: 1d6d97f946ac9174fb1178e8ab0e34ea, type: 2}
+  drawer: {fileID: 5994771941435930253}
+  popUp: {fileID: 0}
+  popUpDrawer: {fileID: 0}
 --- !u!114 &5327935549894542769 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5049085662715361306, guid: 518a712ce5054f74eb85ac3101d42705, type: 3}
