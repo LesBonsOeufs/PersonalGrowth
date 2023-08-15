@@ -439,7 +439,7 @@ MonoBehaviour:
   CanSpawn: 1
   UseUnscaledTime: 0
   PoolerMode: 0
-  PooledSimpleMMFloatingText: {fileID: 7284800961402381166, guid: 0453e37c3c22e7145b8c23c7fa96de36, type: 3}
+  PooledSimpleMMFloatingText: {fileID: 8497502826180974887, guid: 461e9ce064d1077408c18a3d6275108d, type: 3}
   PooledMultipleMMFloatingText: []
   PoolSize: 1
   NestWaitingPool: 1
@@ -2126,6 +2126,10 @@ PrefabInstance:
     - target: {fileID: 5304348729495836951, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
       propertyPath: m_Name
       value: UpperBand
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287404545138304649, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}

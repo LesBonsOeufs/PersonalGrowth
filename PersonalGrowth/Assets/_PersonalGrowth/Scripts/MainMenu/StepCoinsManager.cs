@@ -48,7 +48,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
             MMF_TMPCountTo lTMPCountTo = onNewStepsFeedbacks.GetFeedbackOfType<MMF_TMPCountTo>();
             string lPrefix = Mathf.Sign(deltaCoins) == 1 ? "+" : "-";
 
-            lFloatingText.Value = $"{lPrefix}{deltaCoins}";
+            lFloatingText.Value = $"{lPrefix}{Mathf.Abs(deltaCoins)}";
             lTMPCountTo.CountFrom = startCoins;
             lTMPCountTo.CountTo = startCoins + deltaCoins;
 
