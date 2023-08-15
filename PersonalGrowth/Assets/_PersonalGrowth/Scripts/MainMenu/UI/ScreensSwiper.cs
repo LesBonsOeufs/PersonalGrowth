@@ -44,7 +44,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
 
                 _indexPosition = value;
 
-                screensContainer.DOAnchorPos(GetAnchoredPosFromIndex(_indexPosition), timeToGoToScreen)
+                screensContainer.DOAnchorPos(new Vector2(GetAnchoredXPosFromIndex(_indexPosition), screensContainer.anchoredPosition.y), 
+                    timeToGoToScreen)
                     .SetUpdate(true).OnUpdate(UpdateSelectorPos);
             }
         }
@@ -171,9 +172,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
                 );
         }
 
-        private Vector2 GetAnchoredPosFromIndex(int index)
+        private float GetAnchoredXPosFromIndex(int index)
         {
-            return new Vector2(-canvasScaler.referenceResolution.x * index, 0f);
+            return -canvasScaler.referenceResolution.x * index;
         }
 
         private float GetIndexFromAnchoredXPos(float anchoredPosX)
