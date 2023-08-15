@@ -2127,10 +2127,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpperBand
       objectReference: {fileID: 0}
-    - target: {fileID: 7287404545138304649, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
 --- !u!114 &5304348729140631250 stripped

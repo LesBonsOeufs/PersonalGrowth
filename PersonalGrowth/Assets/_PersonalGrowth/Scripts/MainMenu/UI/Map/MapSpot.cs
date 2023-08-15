@@ -1,20 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
+    [RequireComponent(typeof(RectTransform))]
     public class MapSpot : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private MapSpot _nextSpot;
+
+        private MapPath path;
+
+        public MapSpot NextSpot => _nextSpot;
+        public RectTransform RectTransform { get; private set; }
+
+        public void SetPath(MapPath path)
         {
-        
+            this.path = path;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnValidate()
         {
-        
+            RectTransform = GetComponent<RectTransform>();
         }
     }
 }

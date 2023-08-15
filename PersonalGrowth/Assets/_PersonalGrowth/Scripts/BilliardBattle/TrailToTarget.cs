@@ -1,5 +1,4 @@
 using NaughtyAttributes;
-using System.Net;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.BilliardBattle {

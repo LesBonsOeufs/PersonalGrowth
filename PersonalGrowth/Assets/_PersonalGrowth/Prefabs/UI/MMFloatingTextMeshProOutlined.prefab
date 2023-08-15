@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7785295853672088445, guid: 0453e37c3c22e7145b8c23c7fa96de36, type: 3}
       propertyPath: m_Name
-      value: MMFloatingTextMeshPro
+      value: MMFloatingTextMeshProOutlined
       objectReference: {fileID: 0}
     - target: {fileID: 8042657054365514525, guid: 0453e37c3c22e7145b8c23c7fa96de36, type: 3}
       propertyPath: m_fontAsset
