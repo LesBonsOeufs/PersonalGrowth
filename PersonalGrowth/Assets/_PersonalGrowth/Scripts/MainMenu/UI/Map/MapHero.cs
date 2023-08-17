@@ -5,6 +5,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
     [RequireComponent(typeof(RectTransform))]
     public class MapHero : MonoBehaviour
     {
+        [SerializeField] private Trail forwardTrail;
+
         private RectTransform rectTransform;
 
         private MapSpot LastSpot
@@ -18,6 +20,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
             {
                 _lastSpot = value;
                 rectTransform.anchoredPosition = LastSpot.RectTransform.anchoredPosition;
+                UpdateForwardTrail();
             }
         }
         private MapSpot _lastSpot;
@@ -39,8 +42,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
         [Button("move")]
         public void MoveForward()
         {
-            MapPath lPathToNextSpot = LastSpot.PathToNextSpot;
-            pathStepsProgress += 100;
+            MapTrail lPathToNextSpot = LastSpot.PathToNextSpot;
+
+            StepCoinsManager.Instance.Consume(1);
+            pathStepsProgress ++;
             rectTransform.anchoredPosition = lPathToNextSpot.GetAnchoredPositionFromStepCoins(pathStepsProgress);
 
             //Completed path
@@ -54,6 +59,14 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
                 else
                     Debug.Log("Completed map!");
             }
+
+            UpdateForwardTrail();
+        }
+
+        private void UpdateForwardTrail()
+        {
+            forwardTrail.SetThickness(LastSpot.PathToNextSpot.Thickness);
+            forwardTrail.SetExtents(rectTransform.anchoredPosition, LastSpot.NextSpot.RectTransform.anchoredPosition);
         }
     }
 }

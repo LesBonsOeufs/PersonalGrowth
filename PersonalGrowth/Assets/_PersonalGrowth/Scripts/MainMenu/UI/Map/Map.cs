@@ -9,7 +9,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
     {
         [Header("Path generation")]
         [SerializeField, Tooltip("All spots must be in the same parent")] private List<MapSpot> spotsOrder;
-        [SerializeField] private MapPath pathPrefab;
+        [SerializeField] private MapTrail pathPrefab;
         [SerializeField] private Transform pathsContainer;
 
         public event Action OnMapGenerated;
@@ -35,7 +35,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
             MapSpot lPreviousSpot;
             MapSpot lCurrentSpot;
             MapSpot lNextSpot;
-            MapPath lPathToNextSpot;
+            MapTrail lPathToNextSpot;
 
             for (int i = 0; i < lSpotsCount; i++)
             {
