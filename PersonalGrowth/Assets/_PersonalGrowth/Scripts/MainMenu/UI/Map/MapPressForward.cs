@@ -1,37 +1,94 @@
-using DG.Tweening;
+using Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI;
+using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map 
+namespace Com.GabrielBernabeu
 {
-    public class MapPressForward : PressDownUpFeedback
+    public class MapPressForward : MonoBehaviour
     {
-        [SerializeField] private Vector3 pressedAddedScale;
+        [SerializeField, Tooltip("Time between each OnForward call")] private float forwardCallCooldown = 0.1f;
 
-        private Vector3 initScale;
+        private float counter = 0f;
 
-        private void Awake()
+        public PressFeedback ForwardTrail
         {
-            initScale = transform.localScale;
+            get
+            {
+                return _forwardTrail;
+            }
+
+            set
+            {
+                if (_forwardTrail != null)
+                {
+                    _forwardTrail.OnPressDown -= PressFeedback_OnPressDown;
+                    _forwardTrail.OnPressUp -= PressFeedback_OnPressUp;
+                }
+
+                _forwardTrail = value;
+                _forwardTrail.OnPressDown += PressFeedback_OnPressDown;
+                _forwardTrail.OnPressUp += PressFeedback_OnPressUp;
+            }
+        }
+        private PressFeedback _forwardTrail;
+
+        public PressFeedback NextSpot
+        {
+            get
+            {
+                return _nextSpot;
+            }
+
+            set
+            {
+                if (_nextSpot != null)
+                {
+                    _nextSpot.OnPressDown -= PressFeedback_OnPressDown;
+                    _nextSpot.OnPressUp -= PressFeedback_OnPressUp;
+                }
+
+                _nextSpot = value;
+                _nextSpot.OnPressDown += PressFeedback_OnPressDown;
+                _nextSpot.OnPressUp += PressFeedback_OnPressUp;
+            }
+        }
+        private PressFeedback _nextSpot;
+
+        public bool IsPressed => _forwardTrail.IsPressed || NextSpot.IsPressed;
+
+        public event Action OnForward;
+
+        private void PressFeedback_OnPressDown(PressFeedback sender)
+        {
+            if (sender == NextSpot)
+                ForwardTrail.ForcePressDown();
+            else if (sender == ForwardTrail)
+                NextSpot.ForcePressDown();
         }
 
-        protected override void OnPressDown()
+        private void PressFeedback_OnPressUp(PressFeedback sender)
         {
-            transform.DOKill();
-            transform.DOScale(initScale + pressedAddedScale, 0.6f).SetEase(Ease.OutBounce);
-        }
-
-        protected override void OnPressUp()
-        {
-            transform.DOKill();
-            transform.DOScale(initScale, 0.25f).SetEase(Ease.OutCubic);
+            if (sender == NextSpot)
+                ForwardTrail.ForcePressUp();
+            else if (sender == ForwardTrail)
+                NextSpot.ForcePressUp();
         }
 
         private void Update()
         {
             if (!IsPressed)
+            {
+                counter = 0f;
                 return;
+            }
 
-            Debug.Log("press");
+            counter += Time.deltaTime;
+
+            if (counter > forwardCallCooldown)
+            {
+                counter = 0f;
+                OnForward?.Invoke();
+            }
         }
     }
 }

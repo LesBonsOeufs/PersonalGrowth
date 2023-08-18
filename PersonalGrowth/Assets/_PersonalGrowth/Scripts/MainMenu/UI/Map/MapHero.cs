@@ -6,6 +6,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
     public class MapHero : MonoBehaviour
     {
         [SerializeField] private Trail forwardTrail;
+        [SerializeField] private MapPressForward pressForward;
 
         private RectTransform rectTransform;
 
@@ -21,6 +22,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
                 _lastSpot = value;
                 rectTransform.anchoredPosition = LastSpot.RectTransform.anchoredPosition;
                 UpdateForwardTrail();
+
+                pressForward.NextSpot = LastSpot.NextSpot.GetComponent<PressFeedback>();
             }
         }
         private MapSpot _lastSpot;
@@ -29,8 +32,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
 
         private void Awake()
         {
+            pressForward.ForwardTrail = forwardTrail.GetComponent<PressFeedback>();
             rectTransform = GetComponent<RectTransform>();
             Map.Instance.OnMapGenerated += Map_OnMapGenerated;
+            pressForward.OnForward += PressForward_OnForward;
         }
 
         private void Map_OnMapGenerated()
@@ -39,12 +44,22 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
             Map.Instance.OnMapGenerated -= Map_OnMapGenerated;
         }
 
+        private void PressForward_OnForward()
+        {
+            MoveForward();
+        }
+
         [Button("move")]
         public void MoveForward()
         {
+            StepCoinsManager lStepCoinsInstance = StepCoinsManager.Instance;
+
+            if (lStepCoinsInstance.Count < 1)
+                return;
+
             MapTrail lPathToNextSpot = LastSpot.PathToNextSpot;
 
-            StepCoinsManager.Instance.Consume(1);
+            lStepCoinsInstance.Consume(1);
             pathStepsProgress ++;
             rectTransform.anchoredPosition = lPathToNextSpot.GetAnchoredPositionFromStepCoins(pathStepsProgress);
 
@@ -67,6 +82,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
         {
             forwardTrail.SetThickness(LastSpot.PathToNextSpot.Thickness);
             forwardTrail.SetExtents(rectTransform.anchoredPosition, LastSpot.NextSpot.RectTransform.anchoredPosition);
+        }
+
+        private void OnDestroy()
+        {
+            pressForward.OnForward -= PressForward_OnForward;
         }
     }
 }

@@ -641,9 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a2dc957b16f5447b4659e45c7a470e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  echo: []
   isPressable: 1
-  pressedAddedScale: {x: 0, y: 0.6, z: 0}
+  pressedAddedScale: {x: 0, y: 1.5, z: 0}
 --- !u!1 &4896403619414116717
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8810687163555455137}
   - component: {fileID: 1918687731890867322}
+  - component: {fileID: 6444031818017843326}
   - component: {fileID: 3287070879892033411}
   - component: {fileID: 5908794497180289768}
   m_Layer: 5
@@ -786,6 +786,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardTrail: {fileID: 3343667431615894371}
+  pressForward: {fileID: 6444031818017843326}
+--- !u!114 &6444031818017843326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208251290735804996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e43e7461f099604c806c5339878a857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &3287070879892033411
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -808,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
