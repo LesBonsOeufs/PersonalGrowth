@@ -46,21 +46,20 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
 
         private void PressForward_OnForward()
         {
-            MoveForward();
+            MoveForward(15);
         }
 
-        [Button("move")]
-        public void MoveForward()
+        public void MoveForward(int nSteps)
         {
             StepCoinsManager lStepCoinsInstance = StepCoinsManager.Instance;
 
-            if (lStepCoinsInstance.Count < 1)
+            if (lStepCoinsInstance.Count < nSteps)
                 return;
 
             MapTrail lPathToNextSpot = LastSpot.PathToNextSpot;
 
-            lStepCoinsInstance.Consume(1);
-            pathStepsProgress ++;
+            lStepCoinsInstance.Consume(nSteps);
+            pathStepsProgress += nSteps;
             rectTransform.anchoredPosition = lPathToNextSpot.GetAnchoredPositionFromStepCoins(pathStepsProgress);
 
             //Completed path
