@@ -1,19 +1,24 @@
 using NaughtyAttributes;
+using System;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     [RequireComponent(typeof(RectTransform))]
-    public class MapSpot : MonoBehaviour
+    public abstract class MapSpot : MonoBehaviour
     {
         [ShowNativeProperty] public MapSpot PreviousSpot { get; private set; }
         [ShowNativeProperty] public MapTrail PathToNextSpot { get; private set; }
         [ShowNativeProperty] public MapSpot NextSpot { get; private set; }
         public RectTransform RectTransform { get; private set; }
 
+        public event Action OnActionCompleted;
+
         private void Awake()
         {
             RectTransform = GetComponent<RectTransform>();
         }
+
+        public abstract void StartAction();
 
         public void SetProperties(MapSpot previousSpot, MapTrail pathToNextSpot, MapSpot nextSpot)
         {

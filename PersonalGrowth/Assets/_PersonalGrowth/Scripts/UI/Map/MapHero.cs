@@ -80,7 +80,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                 LastSpot = LastSpot.NextSpot;
 
                 if (LastSpot.PathToNextSpot != null)
+                {
                     Debug.Log("New spot!");
+                    LastSpot.StartAction();
+                    //Wait for action to end (OnActionCompleted event) before enabling movement again!
+                }
                 else
                     Debug.Log("Completed map!");
             }
