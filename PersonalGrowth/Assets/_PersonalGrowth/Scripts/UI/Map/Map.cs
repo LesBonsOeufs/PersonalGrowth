@@ -1,16 +1,22 @@
+using Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots;
 using MoreMountains.Tools;
 using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     public class Map : Singleton<Map>
     {
+        [SerializeField] private Button _fightBtn = default;
+
         [Header("Path generation")]
         [SerializeField, Tooltip("All spots must be in the same parent")] private List<MapSpot> spotsOrder;
         [SerializeField] private MapTrail pathPrefab;
         [SerializeField] private Transform pathsContainer;
+
+        public Button FightBtn => _fightBtn;
 
         public event Action OnMapGenerated;
 

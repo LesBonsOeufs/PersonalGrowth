@@ -2,7 +2,7 @@ using NaughtyAttributes;
 using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
     public delegate void MapSpotEventHandler (MapSpot sender);
 
     [RequireComponent(typeof(RectTransform))]

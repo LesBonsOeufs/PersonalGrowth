@@ -1,5 +1,5 @@
+using Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots;
 using DG.Tweening;
-using System;
 using TMPro;
 using UnityEngine;
 
