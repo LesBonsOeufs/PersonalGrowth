@@ -2,7 +2,7 @@ using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Collection {
     public class CollectionInventory : MonoBehaviour
     {
         [SerializeField] private Drawer_InventoryWeapon inventoryWeaponPrefab = default;

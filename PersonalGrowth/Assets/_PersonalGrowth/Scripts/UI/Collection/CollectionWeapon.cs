@@ -1,9 +1,9 @@
 using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
-using Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection;
+using Com.GabrielBernabeu.PersonalGrowth.UI.Collection;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Collection {
     public delegate void CollectionWeaponEventHandler (WeaponInfo info);
     [RequireComponent(typeof(Button))]
     public class CollectionWeapon : MonoBehaviour

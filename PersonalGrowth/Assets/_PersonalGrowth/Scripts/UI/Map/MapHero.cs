@@ -1,12 +1,17 @@
-using NaughtyAttributes;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     [RequireComponent(typeof(RectTransform))]
     public class MapHero : MonoBehaviour
     {
         [SerializeField] private Trail forwardTrail;
         [SerializeField] private MapPressForward pressForward;
+
+        [Header("Steps bubble")]
+        [SerializeField] private RectTransform stepsBubbleRectTransform;
+        [SerializeField] private TextMeshProUGUI stepsBubbleTmp;
 
         private RectTransform rectTransform;
 
@@ -24,6 +29,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
                 UpdateForwardTrail();
 
                 pressForward.NextSpot = LastSpot.NextSpot.GetComponent<PressFeedback>();
+                stepsBubbleTmp.text = LastSpot.PathToNextSpot.StepsDistance.ToString();
             }
         }
         private MapSpot _lastSpot;
@@ -46,7 +52,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
 
         private void PressForward_OnForward()
         {
-            MoveForward(15);
+            MoveForward(1);
         }
 
         public void MoveForward(int nSteps)
@@ -54,13 +60,18 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
             StepCoinsManager lStepCoinsInstance = StepCoinsManager.Instance;
 
             if (lStepCoinsInstance.Count < nSteps)
+            {
+                GeneralTextFeedback.Instance.MakeText("Not enough step coins for moving forward!");
                 return;
+            }
 
             MapTrail lPathToNextSpot = LastSpot.PathToNextSpot;
 
             lStepCoinsInstance.Consume(nSteps);
             pathStepsProgress += nSteps;
-            rectTransform.anchoredPosition = lPathToNextSpot.GetAnchoredPositionFromStepCoins(pathStepsProgress);
+
+            rectTransform.DOAnchorPos(lPathToNextSpot.GetAnchoredPositionFromStepCoins(pathStepsProgress), pressForward.ForwardCallCoolDown)
+                .SetEase(Ease.InOutQuart);
 
             //Completed path
             if (lPathToNextSpot.IsPathCompleted(pathStepsProgress))
@@ -73,14 +84,20 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
                 else
                     Debug.Log("Completed map!");
             }
+            else
+                stepsBubbleTmp.text = (lPathToNextSpot.StepsDistance - pathStepsProgress).ToString();
 
             UpdateForwardTrail();
         }
 
         private void UpdateForwardTrail()
         {
+            Vector2 lNextSpotAnchoredPos = LastSpot.NextSpot.RectTransform.anchoredPosition;
             forwardTrail.SetThickness(LastSpot.PathToNextSpot.Thickness);
-            forwardTrail.SetExtents(rectTransform.anchoredPosition, LastSpot.NextSpot.RectTransform.anchoredPosition);
+            forwardTrail.SetExtents(rectTransform.anchoredPosition, lNextSpotAnchoredPos);
+
+            Vector2 lForwardCenter = rectTransform.anchoredPosition + (lNextSpotAnchoredPos - rectTransform.anchoredPosition) * 0.5f;
+            stepsBubbleRectTransform.anchoredPosition = lForwardCenter;
         }
 
         private void OnDestroy()

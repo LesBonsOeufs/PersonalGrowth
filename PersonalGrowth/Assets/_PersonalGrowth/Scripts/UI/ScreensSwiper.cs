@@ -6,7 +6,7 @@ using NaughtyAttributes;
 using UnityEngine.EventSystems;
 using System;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI {
     public class ScreensSwiper : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [Foldout("Objects"), SerializeField] private RectTransform screensContainer = default;

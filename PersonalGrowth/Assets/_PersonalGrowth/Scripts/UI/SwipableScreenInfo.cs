@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI {
     [CreateAssetMenu(menuName = "ScreensSwiper/SwipableScreenInfo")]
     public class SwipableScreenInfo : ScriptableObject
     {

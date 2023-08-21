@@ -2,7 +2,7 @@ using Com.GabrielBernabeu.PersonalGrowth.PodometerSystem;
 using TMPro;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI {
     public class Drawer_StepsInfos : MonoBehaviour
     {
         private const int STEPS_PER_KILOMETER = 1350;

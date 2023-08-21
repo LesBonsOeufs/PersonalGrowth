@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI 
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.UI {
     public delegate void PressFeedbackEventHandler(PressFeedback sender);
     public abstract class PressFeedback : MonoBehaviour, IPointerDownHandler, IPointerExitHandler, IPointerUpHandler
     {

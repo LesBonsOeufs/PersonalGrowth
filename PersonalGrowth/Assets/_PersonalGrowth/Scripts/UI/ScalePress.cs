@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI {
     public class ScalePress : PressFeedback
     {
         [SerializeField] private Vector3 pressedAddedScale;

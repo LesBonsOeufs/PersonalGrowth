@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     public class Map : Singleton<Map>
     {
         [Header("Path generation")]

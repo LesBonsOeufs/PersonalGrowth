@@ -1,9 +1,6 @@
-using Com.GabrielBernabeu;
 using Com.GabrielBernabeu.PersonalGrowth;
 using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
-using Com.GabrielBernabeu.PersonalGrowth.MainMenu;
-using Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Collection;
-using MoreMountains.Feedbacks;
+using Com.GabrielBernabeu.PersonalGrowth.UI.Collection;
 using UnityEngine;
 using UnityEngine.UI;
 

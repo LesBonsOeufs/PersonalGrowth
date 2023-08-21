@@ -1,14 +1,14 @@
-using Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI;
 using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     public class MapPressForward : MonoBehaviour
     {
-        [SerializeField, Tooltip("Time between each OnForward call")] private float forwardCallCooldown = 0.1f;
+        [SerializeField, Tooltip("Time between each OnForward call")] private float _forwardCallCooldown = 0.01f;
 
         private float counter = 0f;
+
+        public float ForwardCallCoolDown => _forwardCallCooldown;
 
         public PressFeedback ForwardTrail
         {
@@ -28,6 +28,9 @@ namespace Com.GabrielBernabeu
                 _forwardTrail = value;
                 _forwardTrail.OnPressDown += PressFeedback_OnPressDown;
                 _forwardTrail.OnPressUp += PressFeedback_OnPressUp;
+
+                if (NextSpot != null)
+                    NextSpot.ForcePressUp();
             }
         }
         private PressFeedback _forwardTrail;
@@ -50,6 +53,9 @@ namespace Com.GabrielBernabeu
                 _nextSpot = value;
                 _nextSpot.OnPressDown += PressFeedback_OnPressDown;
                 _nextSpot.OnPressUp += PressFeedback_OnPressUp;
+
+                if (ForwardTrail != null)
+                    ForwardTrail.ForcePressUp();
             }
         }
         private PressFeedback _nextSpot;
@@ -84,7 +90,7 @@ namespace Com.GabrielBernabeu
 
             counter += Time.deltaTime;
 
-            if (counter > forwardCallCooldown)
+            if (counter > _forwardCallCooldown)
             {
                 counter = 0f;
                 OnForward?.Invoke();

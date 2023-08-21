@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     [RequireComponent(typeof(RectTransform))]
     public class MapTrail : Trail
     {
@@ -10,8 +10,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
 
         public Vector2 GetAnchoredPositionFromStepCoins(int nStepCoins)
         {
+            float lPathRatio = Mathf.Clamp01((float)nStepCoins / StepsDistance);
             Vector2 lStartToEnd = end - start;
-            return start + lStartToEnd * ((float)nStepCoins / StepsDistance);
+            return start + lStartToEnd * lPathRatio;
         }
 
         public bool IsPathCompleted(int nStepCoins)

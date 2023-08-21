@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu.UI.Map {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     [RequireComponent(typeof(RectTransform))]
     public class MapSpot : MonoBehaviour
     {

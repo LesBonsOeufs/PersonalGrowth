@@ -3,7 +3,7 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.MainMenu {
+namespace Com.GabrielBernabeu.PersonalGrowth {
     public class StepCoinsManager : Singleton<StepCoinsManager>
     {
         [SerializeField] private TextMeshProUGUI stepCoinsTmp = default;
