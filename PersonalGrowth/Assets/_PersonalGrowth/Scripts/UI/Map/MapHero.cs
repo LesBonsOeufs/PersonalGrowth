@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             pressForward.ForwardTrail = forwardTrail.GetComponent<PressFeedback>();
             rectTransform = GetComponent<RectTransform>();
             Map.Instance.OnMapGenerated += Map_OnMapGenerated;
-            pressForward.OnForward += PressForward_OnForward;
+            StartTravel();
         }
 
         private void Map_OnMapGenerated()
@@ -53,6 +54,37 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
         private void PressForward_OnForward()
         {
             MoveForward(1);
+        }
+
+        private void MapSpot_OnActionCompleted(MapSpot sender)
+        {
+            sender.OnActionCompleted -= MapSpot_OnActionCompleted;
+            StartTravel();
+        }
+
+        private void StartTravel()
+        {
+            forwardTrail.gameObject.SetActive(true);
+            stepsBubbleRectTransform.gameObject.SetActive(true);
+            pressForward.OnForward += PressForward_OnForward;
+        }
+
+        private void StopTravel()
+        {
+            forwardTrail.gameObject.SetActive(false);
+            stepsBubbleRectTransform.gameObject.SetActive(false);
+            pressForward.OnForward -= PressForward_OnForward;
+        }
+
+        private void StopForSpot(MapSpot spot)
+        {
+            Debug.Log("New spot!");
+            LastSpot = spot;
+            pathStepsProgress = 0;
+            StopTravel();
+
+            LastSpot.OnActionCompleted += MapSpot_OnActionCompleted;
+            LastSpot.StartAction();
         }
 
         public void MoveForward(int nSteps)
@@ -76,17 +108,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             //Completed path
             if (lPathToNextSpot.IsPathCompleted(pathStepsProgress))
             {
-                pathStepsProgress = 0;
-                LastSpot = LastSpot.NextSpot;
+                StopForSpot(LastSpot.NextSpot);
 
-                if (LastSpot.PathToNextSpot != null)
-                {
-                    Debug.Log("New spot!");
-                    LastSpot.StartAction();
-                    //Wait for action to end (OnActionCompleted event) before enabling movement again!
-                }
-                else
-                    Debug.Log("Completed map!");
+                return;
             }
             else
                 stepsBubbleTmp.text = (lPathToNextSpot.StepsDistance - pathStepsProgress).ToString();

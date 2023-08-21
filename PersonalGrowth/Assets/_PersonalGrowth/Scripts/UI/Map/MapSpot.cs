@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
+    public delegate void MapSpotEventHandler (MapSpot sender);
+
     [RequireComponent(typeof(RectTransform))]
     public abstract class MapSpot : MonoBehaviour
     {
@@ -11,7 +13,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
         [ShowNativeProperty] public MapSpot NextSpot { get; private set; }
         public RectTransform RectTransform { get; private set; }
 
-        public event Action OnActionCompleted;
+        public abstract event MapSpotEventHandler OnActionCompleted;
 
         private void Awake()
         {

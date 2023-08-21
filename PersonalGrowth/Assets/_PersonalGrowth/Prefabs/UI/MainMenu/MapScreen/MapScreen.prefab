@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 298771921279546269}
   - component: {fileID: 4783270976868007211}
   m_Layer: 5
-  m_Name: Button
+  m_Name: FightBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1964,6 +1964,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot (4)
@@ -2089,6 +2093,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot (5)
@@ -2214,6 +2222,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: nextSpot
       value: 
@@ -2347,6 +2359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot
@@ -2460,6 +2476,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot (6)
@@ -2585,6 +2605,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: _nextSpot
       value: 
@@ -2714,6 +2738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot (3)
@@ -2839,6 +2867,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4394273219840778150}
     m_Modifications:
+    - target: {fileID: 4434959062033350883, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
+      propertyPath: fightBtn
+      value: 
+      objectReference: {fileID: 4783270976868007211}
     - target: {fileID: 8702883107149820281, guid: 87ce72e33d6e6af47bba85d115a97eba, type: 3}
       propertyPath: m_Name
       value: BattleSpot (7)
