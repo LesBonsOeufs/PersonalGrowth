@@ -9,10 +9,16 @@ using UnityEngine.UI;
 namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     public class Map : Singleton<Map>
     {
+        [Header("Miscellaneous")]
         [SerializeField] private Button _fightBtn = default;
 
+        [Header("Spots")]
+        [InfoBox("Make sure to only have one Spot without any previousSpots. It will act as the map's start.", EInfoBoxType.Warning)]
+        [SerializeField] private Transform spotsContainer;
+        [InfoBox("This array will be used for generation & indexation. Changing its order might skew save files.")]
+        [ReadOnly, SerializeField] private List<MapSpot> spotsCatalog = new List<MapSpot>();
+
         [Header("Path generation")]
-        [SerializeField, Tooltip("All spots must be in the same parent")] private List<MapSpot> spotsOrder;
         [SerializeField] private MapTrail pathPrefab;
         [SerializeField] private Transform pathsContainer;
 
@@ -22,7 +28,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         public MapSpot GetSpot(int index)
         {
-            return spotsOrder[index];
+            return spotsCatalog[index];
         }
 
         private void Start()
@@ -30,39 +36,49 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             GenerateMap();
         }
 
-        ///Call from editor for having a preview
-        [Button("GenerateMap"), Tooltip("Place spots in spotsOrder first")]
+        //Call from editor for having a preview
+        [Button("Generate Map"), Tooltip("Place spots in spotsOrder first")]
+        /// <summary>
+        /// Adds PreviousSpots && all Paths to the Map's spots, based on the entered NextSpots values.
+        /// </summary>
         private void GenerateMap()
         {
             pathsContainer.MMDestroyAllChildren();
-            int lSpotsCount = spotsOrder.Count;
-            int lPreviousIndex;
-            int lNextIndex;
-            MapSpot lPreviousSpot;
-            MapSpot lCurrentSpot;
-            MapSpot lNextSpot;
-            MapTrail lPathToNextSpot;
 
-            for (int i = 0; i < lSpotsCount; i++)
+            foreach (MapSpot spot in spotsCatalog)
             {
-                lPreviousIndex = i - 1;
-                lNextIndex = i + 1;
-                lPreviousSpot = lPreviousIndex < 0 ? null : spotsOrder[lPreviousIndex];
-                lCurrentSpot = spotsOrder[i];
-                lNextSpot = lNextIndex >= lSpotsCount ? null : spotsOrder[lNextIndex];
+                List<MapTrail> lTrailsToNextSpots = new List<MapTrail>();
 
-                if (lNextSpot != null)
+                if (spot.NextSpots.Count > 0)
                 {
-                    lPathToNextSpot = Instantiate(pathPrefab, pathsContainer);
-                    lPathToNextSpot.SetExtents(lCurrentSpot.RectTransform.anchoredPosition, lNextSpot.RectTransform.anchoredPosition);
+                    MapTrail lTrailToSpot;
+
+                    foreach (MapSpot nextSpot in spot.NextSpots)
+                    {
+                        lTrailToSpot = Instantiate(pathPrefab, pathsContainer);
+                        lTrailsToNextSpots.Add(lTrailToSpot);
+                        lTrailToSpot.SetExtents(spot.RectTransform.anchoredPosition, nextSpot.RectTransform.anchoredPosition);
+                    }
                 }
                 else
-                    lPathToNextSpot = null;
+                    lTrailsToNextSpots = null;
 
-                lCurrentSpot.SetProperties(lPreviousSpot, lPathToNextSpot, lNextSpot);
+                spot.SetProperties(lTrailsToNextSpots);
             }
 
             OnMapGenerated?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            spotsCatalog.Clear();
+            int lSpotsCount = spotsContainer.childCount;
+
+            for (int i = 0; i < lSpotsCount; i++)
+            {
+                if (spotsContainer.GetChild(i).TryGetComponent(out MapSpot spot))
+                    spotsCatalog.Add(spot);
+            }
         }
     }
 }

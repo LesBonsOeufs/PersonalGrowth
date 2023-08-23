@@ -9,17 +9,15 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
     [RequireComponent(typeof(RectTransform))]
     public abstract class MapSpot : MonoBehaviour
     {
-        public MapSpot PreviousSpot => _previousSpot;
-        [SerializeField, ReadOnly] private MapSpot _previousSpot;
-        public MapTrail PathToNextSpot => _pathToNextSpot;
-        [SerializeField, ReadOnly] private MapTrail _pathToNextSpot;
-        public MapSpot NextSpot => _nextSpot;
-        [SerializeField, ReadOnly] private MapSpot _nextSpot;
-        public List<MapSpot> AdditionalNextSpots => _additionalNextSpots;
-        [SerializeField, ReadOnly] private List<MapSpot> _additionalNextSpots = new List<MapSpot>();
+        public List<MapTrail> TrailsToNextSpots => _trailsToNextSpots;
+        [SerializeField, ReadOnly] private List<MapTrail> _trailsToNextSpots;
+
+        public List<MapSpot> NextSpots => _nextSpots;
+        [Header("Editable")]
+        [SerializeField] private List<MapSpot> _nextSpots = new List<MapSpot>();
         public RectTransform RectTransform { get; private set; }
 
-        public bool IsMultipath => _additionalNextSpots.Count > 0;
+        public bool IsMultipath => _nextSpots.Count > 0;
 
         public abstract event MapSpotEventHandler OnActionCompleted;
 
@@ -30,11 +28,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
 
         public abstract void StartAction();
 
-        public void SetProperties(MapSpot previousSpot, MapTrail pathToNextSpot, MapSpot nextSpot)
+        public void SetProperties(List<MapTrail> trailsToNextSpots)
         {
-            _previousSpot = previousSpot;
-            _pathToNextSpot = pathToNextSpot;
-            _nextSpot = nextSpot;
+            _trailsToNextSpots = trailsToNextSpots == null ? null : new List<MapTrail>(trailsToNextSpots);
         }
 
         private void OnValidate()

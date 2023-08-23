@@ -16,6 +16,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private RectTransform rectTransform;
 
+        private int pathStepsProgress = 0;
+        private int lastNextSpotChoiceIndex;
+
         private MapSpot LastSpot
         {
             get
@@ -29,16 +32,15 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                 rectTransform.anchoredPosition = LastSpot.RectTransform.anchoredPosition;
                 UpdateForwardTrail();
 
-                pressForward.NextSpot = LastSpot.NextSpot.GetComponent<PressFeedback>();
-                stepsBubbleTmp.text = LastSpot.PathToNextSpot.StepsDistance.ToString();
+                pressForward.NextSpot = LastSpot.NextSpots[lastNextSpotChoiceIndex].GetComponent<PressFeedback>();
+                stepsBubbleTmp.text = LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex].StepsDistance.ToString();
             }
         }
         private MapSpot _lastSpot;
 
-        private int pathStepsProgress = 0;
-
         private void Awake()
         {
+            lastNextSpotChoiceIndex = 0;
             pressForward.ForwardTrail = forwardTrail.GetComponent<PressFeedback>();
             rectTransform = GetComponent<RectTransform>();
             Map.Instance.OnMapGenerated += Map_OnMapGenerated;
@@ -97,7 +99,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                 return;
             }
 
-            MapTrail lPathToNextSpot = LastSpot.PathToNextSpot;
+            MapTrail lPathToNextSpot = LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex];
 
             lStepCoinsInstance.Consume(nSteps);
             pathStepsProgress += nSteps;
@@ -108,8 +110,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             //Completed path
             if (lPathToNextSpot.IsPathCompleted(pathStepsProgress))
             {
-                StopForSpot(LastSpot.NextSpot);
-
+                StopForSpot(LastSpot.NextSpots[lastNextSpotChoiceIndex]);
                 return;
             }
             else
@@ -120,8 +121,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private void UpdateForwardTrail()
         {
-            Vector2 lNextSpotAnchoredPos = LastSpot.NextSpot.RectTransform.anchoredPosition;
-            forwardTrail.SetThickness(LastSpot.PathToNextSpot.Thickness);
+            Vector2 lNextSpotAnchoredPos = LastSpot.NextSpots[lastNextSpotChoiceIndex].RectTransform.anchoredPosition;
+            forwardTrail.SetThickness(LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex].Thickness);
             forwardTrail.SetExtents(rectTransform.anchoredPosition, lNextSpotAnchoredPos);
 
             Vector2 lForwardCenter = rectTransform.anchoredPosition + (lNextSpotAnchoredPos - rectTransform.anchoredPosition) * 0.5f;
