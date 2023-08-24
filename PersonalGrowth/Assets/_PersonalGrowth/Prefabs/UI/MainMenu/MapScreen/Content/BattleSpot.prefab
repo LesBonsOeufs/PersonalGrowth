@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5013395939643603047}
   - component: {fileID: 4530335220899780295}
   - component: {fileID: 1727236729974103071}
+  - component: {fileID: 819873899355444751}
   m_Layer: 5
   m_Name: BattleSpot
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pressFeedback: {fileID: 1727236729974103071}
+  _passiveScale: {fileID: 819873899355444751}
   _nextSpots: []
   _trailsToNextSpots: []
 --- !u!222 &5013395939643603047
@@ -107,3 +109,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPressable: 1
   pressedAddedScale: {x: -0.15, y: -0.15, z: -0.15}
+--- !u!114 &819873899355444751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702883107149820281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a55426b519f0240b3476f58efa0e7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAddedScale: {x: 0.2, y: 0.2, z: 0.2}
+  loopDuration: 1.5

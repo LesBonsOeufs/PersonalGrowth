@@ -1,3 +1,4 @@
+using Com.GabrielBernabeu.Common;
 using Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks;
 using DG.Tweening;
 using NaughtyAttributes;
@@ -10,11 +11,16 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
     [RequireComponent(typeof(RectTransform))]
     public abstract class MapSpot : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField] private PressFeedback _pressFeedback;
+        [SerializeField] private PassiveScale _passiveScale;
+
+        [Header("Spots")]
         [SerializeField] private List<MapSpot> _nextSpots = new List<MapSpot>();
         [SerializeField, ReadOnly] private List<MapTrail> _trailsToNextSpots;
 
         public PressFeedback PressFeedback => _pressFeedback;
+        public PassiveScale PassiveScale => _passiveScale;
         public List<MapSpot> NextSpots => _nextSpots;
         public List<MapTrail> TrailsToNextSpots => _trailsToNextSpots;
         public RectTransform RectTransform { get; private set; }
@@ -43,7 +49,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
             if (IsMultipath)
             {
                 foreach (MapSpot nextSpot in _nextSpots)
+                {
                     nextSpot.PressFeedback.OnClick += ChooseNextSpot;
+
+                }
             }
             else
                 OnActionCompleted?.Invoke(this, 0);

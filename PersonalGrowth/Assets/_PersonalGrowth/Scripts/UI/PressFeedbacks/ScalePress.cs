@@ -7,6 +7,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks {
         [SerializeField] private Vector3 pressedAddedScale;
 
         private Vector3 initScale;
+        private Tween currentTween;
 
         private void Awake()
         {
@@ -15,14 +16,14 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks {
 
         protected override void PressedDown()
         {
-            transform.DOKill();
-            transform.DOScale(initScale + pressedAddedScale, 0.2f).SetEase(Ease.OutCubic);
+            currentTween?.Kill();
+            currentTween = transform.DOScale(initScale + pressedAddedScale, 0.2f).SetEase(Ease.OutCubic);
         }
 
         protected override void PressedUp()
         {
-            transform.DOKill();
-            transform.DOScale(initScale, 0.25f).SetEase(Ease.OutCubic);
+            currentTween?.Kill();
+            currentTween = transform.DOScale(initScale, 0.25f).SetEase(Ease.OutCubic);
         }
     }
 }
