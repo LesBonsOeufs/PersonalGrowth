@@ -49,11 +49,13 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                 {
                     _nextSpot.OnPressDown -= PressFeedback_OnPressDown;
                     _nextSpot.OnPressUp -= PressFeedback_OnPressUp;
+                    _nextSpot.enabled = false;
                 }
 
                 _nextSpot = value;
                 _nextSpot.OnPressDown += PressFeedback_OnPressDown;
                 _nextSpot.OnPressUp += PressFeedback_OnPressUp;
+                _nextSpot.enabled = true;
 
                 if (ForwardTrail != null)
                     ForwardTrail.ForcePressUp();

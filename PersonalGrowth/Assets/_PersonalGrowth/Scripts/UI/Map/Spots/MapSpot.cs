@@ -32,6 +32,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
         private void Awake()
         {
             RectTransform = GetComponent<RectTransform>();
+            PressFeedback.enabled = false;
+            PassiveScale.enabled = false;
         }
 
         public abstract void StartAction();
@@ -51,7 +53,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
                 foreach (MapSpot nextSpot in _nextSpots)
                 {
                     nextSpot.PressFeedback.OnClick += ChooseNextSpot;
-
+                    nextSpot.PressFeedback.enabled = true;
+                    nextSpot.PassiveScale.enabled = true;
                 }
             }
             else
@@ -61,7 +64,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots {
         private void ChooseNextSpot(PressFeedback sender)
         {
             foreach (MapSpot nextSpot in _nextSpots)
+            {
                 nextSpot.PressFeedback.OnClick -= ChooseNextSpot;
+                nextSpot.PressFeedback.enabled = false;
+                nextSpot.PassiveScale.enabled = false;
+            }
 
             int lSpotIndex = _nextSpots.FindIndex(nextSpot => nextSpot.PressFeedback == sender);
             OnActionCompleted?.Invoke(this, lSpotIndex);
