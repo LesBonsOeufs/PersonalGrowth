@@ -1240,6 +1240,50 @@ MonoBehaviour:
   timeToGoToScreen: 1
   buttonTimeToExpand: 1
   swipePercentThreshold: 0.2
+--- !u!1 &510073584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510073585}
+  - component: {fileID: 510073586}
+  m_Layer: 0
+  m_Name: MobileNotifications
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510073585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510073584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1162132169}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &510073586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510073584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d9f9b9eee9fcc44baafb7c8cd3ffee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &526127047 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5304348729495836950, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
@@ -1742,6 +1786,8 @@ Transform:
   - {fileID: 855785615}
   - {fileID: 105586397}
   - {fileID: 406686338}
+  - {fileID: 510073585}
+  - {fileID: 2065889449}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1789,7 +1835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f11bb6c5e6c7764a8415fc4bd2fb98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorTestSteps: 1866
+  editorTestSteps: 1913
 --- !u!1 &1390034403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +2043,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892760169}
   m_CullTransparentMesh: 1
+--- !u!1 &2065889448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065889449}
+  - component: {fileID: 2065889450}
+  m_Layer: 0
+  m_Name: WalkReminder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2065889449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065889448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1162132169}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065889450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065889448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdd269329340214f844d2b6f57de8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reminderHour: 8
 --- !u!1 &2093490572
 GameObject:
   m_ObjectHideFlags: 0

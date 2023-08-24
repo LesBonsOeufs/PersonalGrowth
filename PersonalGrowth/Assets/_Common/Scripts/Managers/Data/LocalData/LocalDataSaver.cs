@@ -30,6 +30,8 @@ public static class LocalDataSaver<T> where T : class, new()
     }
     private static T _currentData;
 
+    public static bool SaveExists => File.Exists(saveFullPath);
+
     /// <summary>
     /// Must be called from the main thread
     /// </summary>
@@ -48,7 +50,7 @@ public static class LocalDataSaver<T> where T : class, new()
         BinaryFormatter lFormatter = new BinaryFormatter();
         FileStream lFileStream;
 
-        if (CheckIfSaveExists())
+        if (SaveExists)
         {
             lFileStream = File.Open(saveFullPath, FileMode.Open);
 
@@ -97,14 +99,9 @@ public static class LocalDataSaver<T> where T : class, new()
             Debug.Log("Local Save Updated!");
     }
 
-	private static bool CheckIfSaveExists()
-	{
-		return File.Exists(saveFullPath);
-	}
-
 	public static void ResetSave()
     {
-		if (CheckIfSaveExists())
+		if (SaveExists)
 		{
 			File.Delete(saveFullPath);
 			LoadData();

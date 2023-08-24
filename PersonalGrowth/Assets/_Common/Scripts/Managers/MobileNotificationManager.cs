@@ -80,8 +80,8 @@ namespace Com.GabrielBernabeu.Common
             {
                 Title = title,
                 Text = text,
-                SmallIcon = "logo_small",
-                LargeIcon = "logo_large",
+                SmallIcon = "icon_small",
+                LargeIcon = "icon_large",
                 FireTime = fireTime,
                 RepeatInterval = repeatInterval,
                 ShouldAutoCancel = true
