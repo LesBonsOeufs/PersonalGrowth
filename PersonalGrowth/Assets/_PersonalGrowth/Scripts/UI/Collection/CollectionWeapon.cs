@@ -1,5 +1,4 @@
 using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
-using Com.GabrielBernabeu.PersonalGrowth.UI.Collection;
 using UnityEngine;
 using UnityEngine.UI;
 

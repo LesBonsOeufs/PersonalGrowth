@@ -1,8 +1,5 @@
-using Com.GabrielBernabeu.Common.DataManagement;
-using NaughtyAttributes;
 using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     public delegate void PodometerEventHandler(Podometer sender);
@@ -10,7 +7,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
     {
         [SerializeField] private HealthConnectAARCaller healthConnect = default;
 
-        public int NewStepsCount { get; private set; }
+        public int StepsCountSinceLast { get; private set; }
         public int TodayStepsCount { get; private set; }
 
         public event PodometerEventHandler OnStepsUpdate;
@@ -36,7 +33,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
                 lLocalData.nLastTodaySteps = 0;
             }
 
-            NewStepsCount = nSteps - lLocalData.nLastTodaySteps;
+            StepsCountSinceLast = nSteps - lLocalData.nLastTodaySteps;
             TodayStepsCount = nSteps;
             OnStepsUpdate?.Invoke(this);
 

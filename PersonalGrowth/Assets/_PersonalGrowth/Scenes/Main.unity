@@ -170,6 +170,8 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   stepCoinsTmp: {fileID: 5304348729140631251}
   onNewStepsFeedbacks: {fileID: 5304348729140631250}
+  maxDailyCoins: 1000
+  maxTotalCoins: 10000
 --- !u!1 &406686337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,7 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f11bb6c5e6c7764a8415fc4bd2fb98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorTestSteps: 40154
+  editorTestSteps: 1866
 --- !u!1 &1390034403
 GameObject:
   m_ObjectHideFlags: 0

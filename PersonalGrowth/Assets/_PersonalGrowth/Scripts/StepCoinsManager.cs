@@ -9,6 +9,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
         [SerializeField] private TextMeshProUGUI stepCoinsTmp = default;
         [SerializeField] private MMF_Player onNewStepsFeedbacks = default;
 
+        [Header("Maximums")]
+        [SerializeField] private int maxDailyCoins = 1000;
+        [SerializeField] private int maxTotalCoins = 10000;
+
         public int Count { get; private set; }
 
         protected override void Awake()
@@ -32,11 +36,38 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
             LocalData lData = LocalDataSaver<LocalData>.CurrentData;
             int lLastCoinsCount = lData.stepCoinsCount;
             stepCoinsTmp.text = lLastCoinsCount.ToString();
+            int lCoinsGain;
 
-            if (sender.NewStepsCount > 0)
+            if (sender.TodayStepsCount > maxDailyCoins)
             {
-                lData.stepCoinsCount += sender.NewStepsCount;
-                NewCoinsAnim(lLastCoinsCount, sender.NewStepsCount);
+                int lLastSessionStepsCount = sender.TodayStepsCount - sender.StepsCountSinceLast;
+                // All coins have been retrieved, as the maxDailyCoins was already exceeded on last session
+                if (lLastSessionStepsCount > maxDailyCoins)
+                {
+                    lCoinsGain = 0;
+                    GeneralTextFeedback.Instance.MakeText($"Already retrieved today's coins ({maxDailyCoins} per day max)!");
+                }
+                else
+                {
+                    // This session is the first with an exceeded maxDailyCoins today
+                    lCoinsGain = maxDailyCoins - lLastSessionStepsCount;
+                }
+            }
+            else
+                lCoinsGain = sender.StepsCountSinceLast;
+
+            if (lCoinsGain > 0)
+            {
+                int lNewCoinsCount = lData.stepCoinsCount + sender.StepsCountSinceLast;
+
+                if (lNewCoinsCount > maxTotalCoins)
+                {
+                    lNewCoinsCount = maxTotalCoins;
+                    GeneralTextFeedback.Instance.MakeText($"You can't have more than {maxTotalCoins} coins in total!");
+                }
+
+                NewCoinsAnim(lLastCoinsCount, lNewCoinsCount - lLastCoinsCount);
+                lData.stepCoinsCount = lNewCoinsCount;
             }
 
             Count = lData.stepCoinsCount;

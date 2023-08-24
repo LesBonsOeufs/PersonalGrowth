@@ -26,7 +26,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI {
 
         public void SetSteps(Podometer podometer)
         {
-            int lNewStepsCount = podometer.NewStepsCount;
+            int lNewStepsCount = podometer.StepsCountSinceLast;
             int lTodayStepsCount = podometer.TodayStepsCount;
 
             float lNKilometers = (float)lTodayStepsCount / STEPS_PER_KILOMETER;
