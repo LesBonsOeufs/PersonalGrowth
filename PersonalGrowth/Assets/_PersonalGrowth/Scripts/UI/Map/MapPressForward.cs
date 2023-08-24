@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     public class MapPressForward : MonoBehaviour

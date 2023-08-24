@@ -1,4 +1,5 @@
 using Com.GabrielBernabeu.PersonalGrowth.UI.Map.Spots;
+using Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -16,8 +17,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private RectTransform rectTransform;
 
+        private int lastChosenNextSpotIndex;
         private int pathStepsProgress = 0;
-        private int lastNextSpotChoiceIndex;
 
         private MapSpot LastSpot
         {
@@ -30,20 +31,20 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             {
                 _lastSpot = value;
                 rectTransform.anchoredPosition = LastSpot.RectTransform.anchoredPosition;
-                UpdateForwardTrail();
-
-                pressForward.NextSpot = LastSpot.NextSpots[lastNextSpotChoiceIndex].GetComponent<PressFeedback>();
-                stepsBubbleTmp.text = LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex].StepsDistance.ToString();
             }
         }
         private MapSpot _lastSpot;
 
         private void Awake()
         {
-            lastNextSpotChoiceIndex = 0;
+            lastChosenNextSpotIndex = 0;
             pressForward.ForwardTrail = forwardTrail.GetComponent<PressFeedback>();
             rectTransform = GetComponent<RectTransform>();
             Map.Instance.OnMapGenerated += Map_OnMapGenerated;
+        }
+
+        private void Start()
+        {
             StartTravel();
         }
 
@@ -58,9 +59,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             MoveForward(1);
         }
 
-        private void MapSpot_OnActionCompleted(MapSpot sender)
+        private void MapSpot_OnActionCompleted(MapSpot sender, int chosenNextSpotIndex)
         {
             sender.OnActionCompleted -= MapSpot_OnActionCompleted;
+            lastChosenNextSpotIndex = chosenNextSpotIndex;
             StartTravel();
         }
 
@@ -68,6 +70,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
         {
             forwardTrail.gameObject.SetActive(true);
             stepsBubbleRectTransform.gameObject.SetActive(true);
+            UpdateForwardTrail();
+            UpdatePressForward();
             pressForward.OnForward += PressForward_OnForward;
         }
 
@@ -99,7 +103,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                 return;
             }
 
-            MapTrail lPathToNextSpot = LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex];
+            MapTrail lPathToNextSpot = LastSpot.TrailsToNextSpots[lastChosenNextSpotIndex];
 
             lStepCoinsInstance.Consume(nSteps);
             pathStepsProgress += nSteps;
@@ -110,7 +114,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             //Completed path
             if (lPathToNextSpot.IsPathCompleted(pathStepsProgress))
             {
-                StopForSpot(LastSpot.NextSpots[lastNextSpotChoiceIndex]);
+                StopForSpot(LastSpot.NextSpots[lastChosenNextSpotIndex]);
                 return;
             }
             else
@@ -121,12 +125,18 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private void UpdateForwardTrail()
         {
-            Vector2 lNextSpotAnchoredPos = LastSpot.NextSpots[lastNextSpotChoiceIndex].RectTransform.anchoredPosition;
-            forwardTrail.SetThickness(LastSpot.TrailsToNextSpots[lastNextSpotChoiceIndex].Thickness);
+            Vector2 lNextSpotAnchoredPos = LastSpot.NextSpots[lastChosenNextSpotIndex].RectTransform.anchoredPosition;
+            forwardTrail.SetThickness(LastSpot.TrailsToNextSpots[lastChosenNextSpotIndex].Thickness);
             forwardTrail.SetExtents(rectTransform.anchoredPosition, lNextSpotAnchoredPos);
 
             Vector2 lForwardCenter = rectTransform.anchoredPosition + (lNextSpotAnchoredPos - rectTransform.anchoredPosition) * 0.5f;
             stepsBubbleRectTransform.anchoredPosition = lForwardCenter;
+        }
+        
+        private void UpdatePressForward()
+        {
+            pressForward.NextSpot = LastSpot.NextSpots[lastChosenNextSpotIndex].PressFeedback;
+            stepsBubbleTmp.text = LastSpot.TrailsToNextSpots[lastChosenNextSpotIndex].StepsDistance.ToString();
         }
 
         private void OnDestroy()

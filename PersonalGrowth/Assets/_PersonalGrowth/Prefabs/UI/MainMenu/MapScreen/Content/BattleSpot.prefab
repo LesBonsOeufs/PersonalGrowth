@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e443fe477d33e34483e295cf0c702f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pressFeedback: {fileID: 1727236729974103071}
+  _nextSpots: []
+  _trailsToNextSpots: []
 --- !u!222 &5013395939643603047
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -103,4 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressable: 1
-  pressedAddedScale: {x: 0.5, y: 0.5, z: 0.5}
+  pressedAddedScale: {x: -0.15, y: -0.15, z: -0.15}

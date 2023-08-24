@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks {
     public class ScalePress : PressFeedback
     {
         [SerializeField] private Vector3 pressedAddedScale;
@@ -16,7 +16,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI {
         protected override void PressedDown()
         {
             transform.DOKill();
-            transform.DOScale(initScale + pressedAddedScale, 0.6f).SetEase(Ease.OutBounce);
+            transform.DOScale(initScale + pressedAddedScale, 0.2f).SetEase(Ease.OutCubic);
         }
 
         protected override void PressedUp()

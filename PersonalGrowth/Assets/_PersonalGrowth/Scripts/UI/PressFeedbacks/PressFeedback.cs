@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.UI {
+namespace Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks {
     public delegate void PressFeedbackEventHandler(PressFeedback sender);
-    public abstract class PressFeedback : MonoBehaviour, IPointerDownHandler, IPointerExitHandler, IPointerUpHandler
+    public abstract class PressFeedback : MonoBehaviour, IPointerDownHandler, IPointerExitHandler, IPointerUpHandler, IPointerClickHandler
     {
         public bool isPressable = true;
 
@@ -13,6 +12,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI {
 
         public event PressFeedbackEventHandler OnPressDown;
         public event PressFeedbackEventHandler OnPressUp;
+        public event PressFeedbackEventHandler OnClick;
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -27,6 +27,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI {
         public void OnPointerExit(PointerEventData eventData)
         {
             PressUp(true);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            OnClick?.Invoke(this);
         }
 
         public void ForcePressDown() => PressDown();
