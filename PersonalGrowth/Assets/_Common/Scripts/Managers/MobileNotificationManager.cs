@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Com.GabrielBernabeu.Common 
 {
-    public class MobileNotificationManager : MonoBehaviour
+    public class MobileNotificationManager : Singleton<MobileNotificationManager>
     {
 #if UNITY_ANDROID
 
@@ -21,20 +21,6 @@ namespace Com.GabrielBernabeu.Common
         private AndroidNotificationChannel defaultChannel;
 
 #endif
-
-        public static MobileNotificationManager Instance { get; private set; }
-
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
 
         private void Start()
         {
@@ -109,14 +95,6 @@ namespace Com.GabrielBernabeu.Common
             lReturnedValue.AddSeconds(-lReturnedValue.Second);
 
             return lReturnedValue;
-        }
-
-        private void OnDestroy()
-        {
-            if (Instance != this)
-                return;
-
-            Instance = null;
         }
     }
 }
