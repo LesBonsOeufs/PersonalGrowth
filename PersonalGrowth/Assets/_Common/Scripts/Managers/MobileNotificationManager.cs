@@ -74,8 +74,15 @@ namespace Com.GabrielBernabeu.Common
             };
 
             Debug.Log(fireTime);
-            AndroidNotificationCenter.SendNotificationWithExplicitID(lNotification, defaultChannel.Id, id++);
+            AndroidNotificationCenter.SendNotificationWithExplicitID(lNotification, defaultChannel.Id, id);
+
 #endif
+        }
+
+        public bool IsScheduled(int id)
+        {
+            NotificationStatus lNotificationStatus = AndroidNotificationCenter.CheckScheduledNotificationStatus(id);
+            return lNotificationStatus == NotificationStatus.Scheduled;
         }
 
         private DateTime GetNextDayOfWeekDateAtHour(DayOfWeek dayOfWeek, int hour = 8)

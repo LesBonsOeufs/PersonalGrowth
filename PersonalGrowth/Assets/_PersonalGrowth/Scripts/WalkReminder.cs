@@ -10,8 +10,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
 
         private void Awake()
         {
-            // If save does not exist, this is the first session
-            if (!LocalDataSaver<LocalData>.SaveExists)
+            // If there is no scheduled notification from this app with id 0, make one.
+            if (MobileNotificationManager.Instance.IsScheduled(0))
                 MobileNotificationManager.Instance.MakeNotification("Good morning!", "A little walk for waking up?", DateTime.Today.AddDays(1).AddHours(reminderHour), TimeSpan.FromDays(1));
         }
     }
