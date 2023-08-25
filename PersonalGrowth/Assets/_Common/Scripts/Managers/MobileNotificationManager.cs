@@ -7,10 +7,10 @@ using System;
 using UnityEngine;
 
 #if UNITY_ANDROID
-    using Unity.Notifications.Android;
+using Unity.Notifications.Android;
 #endif
 
-namespace Com.GabrielBernabeu.Common 
+namespace Com.GabrielBernabeu.Common
 {
     public class MobileNotificationManager : Singleton<MobileNotificationManager>
     {
@@ -81,8 +81,12 @@ namespace Com.GabrielBernabeu.Common
 
         public bool IsScheduled(int id)
         {
+#if UNITY_ANDROID
             NotificationStatus lNotificationStatus = AndroidNotificationCenter.CheckScheduledNotificationStatus(id);
             return lNotificationStatus == NotificationStatus.Scheduled;
+#else
+            return false;
+#endif
         }
 
         private DateTime GetNextDayOfWeekDateAtHour(DayOfWeek dayOfWeek, int hour = 8)
