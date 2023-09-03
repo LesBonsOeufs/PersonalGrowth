@@ -27,14 +27,14 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
             Count -= nCoins;
 
             NewCoinsAnim(lLastCoinsCount, -nCoins);
-            LocalDataSaver<LocalData>.CurrentData.stepCoinsCount = Count;
+            LocalDataSaver<LocalData>.CurrentData.podometer.stepCoinsCount = Count;
             LocalDataSaver<LocalData>.SaveCurrentData();
         }
 
         private void Podometer_OnStepsUpdate(Podometer sender)
         {
             LocalData lData = LocalDataSaver<LocalData>.CurrentData;
-            int lLastCoinsCount = lData.stepCoinsCount;
+            int lLastCoinsCount = lData.podometer.stepCoinsCount;
             stepCoinsTmp.text = lLastCoinsCount.ToString();
             int lCoinsGain;
 
@@ -58,7 +58,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
 
             if (lCoinsGain > 0)
             {
-                int lNewCoinsCount = lData.stepCoinsCount + sender.StepsCountSinceLast;
+                int lNewCoinsCount = lData.podometer.stepCoinsCount + sender.StepsCountSinceLast;
 
                 if (lNewCoinsCount > maxTotalCoins)
                 {
@@ -67,10 +67,10 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
                 }
 
                 NewCoinsAnim(lLastCoinsCount, lNewCoinsCount - lLastCoinsCount);
-                lData.stepCoinsCount = lNewCoinsCount;
+                lData.podometer.stepCoinsCount = lNewCoinsCount;
             }
 
-            Count = lData.stepCoinsCount;
+            Count = lData.podometer.stepCoinsCount;
         }
 
         private void NewCoinsAnim(int startCoins, int deltaCoins)

@@ -9,7 +9,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private float counter = 0f;
 
-        public float ForwardCallCoolDown => _forwardCallCooldown;
+        public float ForwardCallCooldown => _forwardCallCooldown;
 
         public PressFeedback ForwardTrail
         {

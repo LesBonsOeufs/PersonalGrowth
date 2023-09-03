@@ -27,17 +27,17 @@ namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
         {
             LocalData lLocalData = LocalDataSaver<LocalData>.CurrentData;
 
-            if (lLocalData.lastUseDay < DateTime.Today)
+            if (lLocalData.podometer.lastUseDay < DateTime.Today)
             {
-                lLocalData.lastUseDay = DateTime.Today;
-                lLocalData.nLastTodaySteps = 0;
+                lLocalData.podometer.lastUseDay = DateTime.Today;
+                lLocalData.podometer.nLastTodaySteps = 0;
             }
 
-            StepsCountSinceLast = nSteps - lLocalData.nLastTodaySteps;
+            StepsCountSinceLast = nSteps - lLocalData.podometer.nLastTodaySteps;
             TodayStepsCount = nSteps;
             OnStepsUpdate?.Invoke(this);
 
-            lLocalData.nLastTodaySteps = nSteps;
+            lLocalData.podometer.nLastTodaySteps = nSteps;
             LocalDataSaver<LocalData>.SaveCurrentData();
         }
 

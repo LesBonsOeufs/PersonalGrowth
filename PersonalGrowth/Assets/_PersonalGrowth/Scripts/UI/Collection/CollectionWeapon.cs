@@ -1,4 +1,4 @@
-using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using Com.GabrielBernabeu.PersonalGrowth.Battle;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +27,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Collection {
 
         private void OnValidate()
         {
-            drawer.SetInfos(info);
+            drawer.SetInfo(info);
         }
 
         private void OnDestroy()

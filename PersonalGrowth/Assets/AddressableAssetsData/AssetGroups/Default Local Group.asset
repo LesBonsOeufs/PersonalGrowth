@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6e57bf8483e175c488c7d3e8104b10fd
+  m_SerializeEntries:
+  - m_GUID: dd7b7887f9bec4d45ba12424fd899232
+    m_Address: Sword
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d6d97f946ac9174fb1178e8ab0e34ea
+    m_Address: Spear
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7279943adfc025f499b6134c34df0695
+    m_Address: Bow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 888ce34d3b40cdd4e87fd680d50457e3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6621dca2d30aa1a4d9f39906268e6566, type: 2}
+    - {fileID: 11400000, guid: 2696110fc9f8a664bada893935cbebd2, type: 2}

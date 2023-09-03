@@ -8,16 +8,16 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         public int StepsDistance { get; private set; }
 
-        public Vector2 GetAnchoredPositionFromStepCoins(int nStepCoins)
+        public Vector2 GetAnchoredPositionFromSteps(int nSteps)
         {
-            float lPathRatio = Mathf.Clamp01((float)nStepCoins / StepsDistance);
+            float lPathRatio = Mathf.Clamp01((float)nSteps / StepsDistance);
             Vector2 lStartToEnd = end - start;
             return start + lStartToEnd * lPathRatio;
         }
 
-        public bool IsPathCompleted(int nStepCoins)
+        public bool IsPathCompleted(int nSteps)
         {
-            return nStepCoins >= StepsDistance;
+            return nSteps >= StepsDistance;
         }
 
         public override void SetExtents(Vector2 start, Vector2 end)

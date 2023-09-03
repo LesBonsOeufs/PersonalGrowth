@@ -1,5 +1,6 @@
 using Com.GabrielBernabeu.PersonalGrowth;
-using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using Com.GabrielBernabeu.PersonalGrowth.Battle;
+using Com.GabrielBernabeu.PersonalGrowth.PodometerSystem;
 using Com.GabrielBernabeu.PersonalGrowth.UI.Collection;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,7 @@ public class CollectionPopUp : MonoBehaviour
     private void CollectionWeapon_OnChosen(WeaponInfo info)
     {
         selectedWeapon = info;
-        weaponDrawer.SetInfos(selectedWeapon);
+        weaponDrawer.SetInfo(selectedWeapon);
         gameObject.SetActive(true);
     }
 
@@ -44,7 +45,11 @@ public class CollectionPopUp : MonoBehaviour
         }
 
         StepCoinsManager.Instance.Consume(selectedWeapon.Price);
+        //Save new equipped weapon
+        LocalDataSaver<LocalData>.CurrentData.inventory.weaponInfoAddresses.Add(selectedWeapon.name);
+        LocalDataSaver<LocalData>.SaveCurrentData();
         inventory.AddWeapon(selectedWeapon);
+
         gameObject.SetActive(false);
     }
 

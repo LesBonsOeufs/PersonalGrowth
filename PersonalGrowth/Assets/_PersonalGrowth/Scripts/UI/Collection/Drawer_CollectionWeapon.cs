@@ -1,4 +1,4 @@
-using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using Com.GabrielBernabeu.PersonalGrowth.Battle;
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +7,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Collection {
     {
         [SerializeField] private TextMeshProUGUI priceTmp = default;
 
-        public override void SetInfos(WeaponInfo info)
+        public override void SetInfo(WeaponInfo info)
         {
-            base.SetInfos(info);
+            base.SetInfo(info);
             priceTmp.text = info.Price.ToString();
         }
     }

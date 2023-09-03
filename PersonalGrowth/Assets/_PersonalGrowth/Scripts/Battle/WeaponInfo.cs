@@ -1,8 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle
-{
+namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
     [CreateAssetMenu(fileName = "Scriptables", menuName = "ScriptableObjects/WeaponInfo", order = 1)]
     public class WeaponInfo : ScriptableObject
     {

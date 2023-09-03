@@ -31,6 +31,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             return spotsCatalog[index];
         }
 
+        public int GetSpotIndex(MapSpot spot)
+        {
+            return spotsCatalog.IndexOf(spot);
+        }
+
         private void Start()
         {
             GenerateMap();

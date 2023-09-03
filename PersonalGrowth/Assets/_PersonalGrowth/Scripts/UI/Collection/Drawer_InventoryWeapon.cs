@@ -1,4 +1,4 @@
-using Com.GabrielBernabeu.PersonalGrowth.ColumnsBattle;
+using Com.GabrielBernabeu.PersonalGrowth.Battle;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +7,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Collection {
     {
         [SerializeField] private Image weaponImage = default;
 
-        public virtual void SetInfos(WeaponInfo info)
+        public virtual void SetInfo(WeaponInfo info)
         {
             weaponImage.sprite = info.Sprite;
         }
