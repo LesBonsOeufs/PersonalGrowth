@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: b8bd9c221be1c934bb7aa5019d6c495e
+guid: 22458dcef96062746a5d958a0a5dac91
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - inventoryWeaponPrefab: {fileID: 3473480195738292023, guid: 518a712ce5054f74eb85ac3101d42705, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
