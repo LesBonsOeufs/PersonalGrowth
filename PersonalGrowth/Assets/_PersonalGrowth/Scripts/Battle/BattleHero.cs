@@ -4,29 +4,57 @@ using UnityEngine;
 namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
     public class BattleHero : MonoBehaviour
     {
-        [SerializeField, ReadOnly] private float currentCharge = 0f;
+        [SerializeField] private float strikeCooldown = 0.66f;
+
+        [SerializeField, ReadOnly] private float castCounter = 0f;
+        [SerializeField, ReadOnly] private float strikeCooldownCounter = 0f;
+
+        private bool isCasting = false;
+
+        public EScreenSide GetTouchSide
+        {
+            get
+            {
+                bool lIsLeftSide = Input.mousePosition.x < Screen.width * 0.5f;
+                return lIsLeftSide ? EScreenSide.LEFT : EScreenSide.RIGHT;
+            }
+        }
 
         private void Update()
         {
+            if (strikeCooldownCounter > 0f)
+            {
+                strikeCooldownCounter -= Time.deltaTime;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                isCasting = true;
+                Debug.Log(GetTouchSide);
+            }
             if (Input.GetMouseButtonUp(0))
             {
-                if (currentCharge >= 1f)
+                isCasting = false;
+
+                if (castCounter >= 1f)
                     Strike();
             }
             
-            if (Input.GetMouseButton(0))
-                currentCharge += Time.deltaTime;
+            if (isCasting)
+                castCounter += Time.deltaTime;
             else
-                currentCharge -= Time.deltaTime;
+                castCounter -= Time.deltaTime;
 
-            currentCharge = Mathf.Clamp(currentCharge, 0f, 1f);
+            castCounter = Mathf.Clamp(castCounter, 0f, 1f);
         }
 
         private void Strike()
         {
-            currentCharge = 0f;
+            castCounter = 0f;
             Debug.Log("Strike");
             //Striking stuff
+            strikeCooldownCounter = strikeCooldown;
         }
     }
 }
