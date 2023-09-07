@@ -11,6 +11,20 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private bool isCasting = false;
 
+        [ShowNativeProperty] public WeaponInfo EquippedWeapon
+        {
+            get
+            {
+                return _equippedWeapon;
+            }
+
+            private set
+            {
+                _equippedWeapon = value;
+            }
+        }
+        private WeaponInfo _equippedWeapon;
+
         public EScreenSide GetTouchSide
         {
             get
@@ -18,6 +32,16 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
                 bool lIsLeftSide = Input.mousePosition.x < Screen.width * 0.5f;
                 return lIsLeftSide ? EScreenSide.LEFT : EScreenSide.RIGHT;
             }
+        }
+
+        private void Awake()
+        {
+            BattleInventory.OnEquipWeapon += BattleInventory_OnEquipWeapon;
+        }
+
+        private void BattleInventory_OnEquipWeapon(WeaponInfo weaponInfo)
+        {
+            EquippedWeapon = weaponInfo;
         }
 
         private void Update()
@@ -55,6 +79,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
             Debug.Log("Strike");
             //Striking stuff
             strikeCooldownCounter = strikeCooldown;
+        }
+
+        private void OnDestroy()
+        {
+            BattleInventory.OnEquipWeapon -= BattleInventory_OnEquipWeapon;
         }
     }
 }

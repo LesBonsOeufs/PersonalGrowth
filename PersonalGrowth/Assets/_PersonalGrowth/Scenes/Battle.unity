@@ -369,6 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22458dcef96062746a5d958a0a5dac91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strikeCooldown: 0.66
+  castCounter: 0
+  strikeCooldownCounter: 0
 --- !u!1 &442993722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78cd98a4cdabde47878d4d07f8f44a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryWeaponPrefab: {fileID: 3473480195738292023, guid: 518a712ce5054f74eb85ac3101d42705, type: 3}
+  inventoryWeaponPrefab: {fileID: 6384788090293371627, guid: d5036f6ae11805942af084b4337b2ee0, type: 3}
 --- !u!1 &1949049785
 GameObject:
   m_ObjectHideFlags: 0
