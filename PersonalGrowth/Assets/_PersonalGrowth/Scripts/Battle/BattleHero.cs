@@ -4,26 +4,11 @@ using UnityEngine;
 namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
     public class BattleHero : MonoBehaviour
     {
-        [SerializeField] private float strikeCooldown = 0.66f;
+        [SerializeField] private EquippedWeapon equippedWeapon;
+        [SerializeField] private ChargingSign chargingSign;
 
-        [SerializeField, ReadOnly] private float castCounter = 0f;
-        [SerializeField, ReadOnly] private float strikeCooldownCounter = 0f;
-
-        private bool isCasting = false;
-
-        [ShowNativeProperty] public WeaponInfo EquippedWeapon
-        {
-            get
-            {
-                return _equippedWeapon;
-            }
-
-            private set
-            {
-                _equippedWeapon = value;
-            }
-        }
-        private WeaponInfo _equippedWeapon;
+        [SerializeField, ReadOnly] private float chargeCounter = 0f;
+        [SerializeField, ReadOnly] private float cooldownCounter = 0f;
 
         public EScreenSide GetTouchSide
         {
@@ -41,44 +26,70 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private void BattleInventory_OnEquipWeapon(WeaponInfo weaponInfo)
         {
-            EquippedWeapon = weaponInfo;
+            equippedWeapon.info = weaponInfo;
+            StartCooldown();
         }
 
         private void Update()
         {
-            if (strikeCooldownCounter > 0f)
+            bool lTouchHold = Input.GetMouseButton(0);
+
+            if (lTouchHold)
+                equippedWeapon.Side = GetTouchSide;
+
+            if (cooldownCounter > 0f)
             {
-                strikeCooldownCounter -= Time.deltaTime;
+                cooldownCounter -= Time.deltaTime;
+
+                if (cooldownCounter < 0f)
+                    cooldownCounter = 0f;
+
+                chargingSign.SetValue(cooldownCounter / equippedWeapon.info.CooldownDuration);
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                isCasting = true;
-                Debug.Log(GetTouchSide);
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                isCasting = false;
+            float lChargeDuration = equippedWeapon.info.ChargeDuration;
 
-                if (castCounter >= 1f)
+            if (lTouchHold)
+            {
+                if (chargeCounter != lChargeDuration)
+                {
+                    chargingSign.Status = EChargeStatus.GROW;
+                    chargeCounter += Time.deltaTime;
+                }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (chargeCounter >= lChargeDuration)
                     Strike();
+                else
+                    chargingSign.Status = EChargeStatus.SHRINK;
             }
-            
-            if (isCasting)
-                castCounter += Time.deltaTime;
             else
-                castCounter -= Time.deltaTime;
+                chargeCounter -= Time.deltaTime;
 
-            castCounter = Mathf.Clamp(castCounter, 0f, 1f);
+            chargeCounter = Mathf.Clamp(chargeCounter, 0f, lChargeDuration);
+
+            if (chargeCounter == lChargeDuration)
+                chargingSign.Status = EChargeStatus.FULL;
+
+            chargingSign.SetValue(chargeCounter / lChargeDuration);
         }
 
         private void Strike()
         {
-            castCounter = 0f;
             Debug.Log("Strike");
             //Striking stuff
-            strikeCooldownCounter = strikeCooldown;
+            equippedWeapon.Strike();
+            Debug.Log(GetTouchSide);
+            StartCooldown();
+        }
+
+        private void StartCooldown()
+        {
+            chargeCounter = 0f;
+            cooldownCounter = equippedWeapon.info.CooldownDuration;
+            chargingSign.Status = EChargeStatus.BLOCKED;
         }
 
         private void OnDestroy()

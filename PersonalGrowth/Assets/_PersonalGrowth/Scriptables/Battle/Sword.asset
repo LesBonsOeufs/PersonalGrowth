@@ -15,6 +15,6 @@ MonoBehaviour:
   _name: Weapon
   _price: 80
   _sprite: {fileID: 1779222809, guid: a5545b5f712bbaf469dc283ec5e017d8, type: 3}
-  _shape: 0
   _power: 2
-  _durability: 5
+  _chargeDuration: 1
+  _cooldownDuration: 1
