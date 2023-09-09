@@ -6,6 +6,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
     {
         [SerializeField] private EquippedWeapon equippedWeapon;
         [SerializeField] private ChargingSign chargingSign;
+        [SerializeField] private BattleInventory inventory;
 
         [SerializeField, ReadOnly] private float chargeCounter = 0f;
         [SerializeField, ReadOnly] private float cooldownCounter = 0f;
@@ -21,7 +22,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private void Awake()
         {
-            BattleInventory.OnEquipWeapon += BattleInventory_OnEquipWeapon;
+            inventory.OnEquipWeapon += BattleInventory_OnEquipWeapon;
         }
 
         private void BattleInventory_OnEquipWeapon(WeaponInfo weaponInfo)
@@ -44,7 +45,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
                 if (cooldownCounter < 0f)
                     cooldownCounter = 0f;
 
-                chargingSign.SetValue(cooldownCounter / equippedWeapon.info.CooldownDuration);
+                chargingSign.Value = cooldownCounter / equippedWeapon.info.CooldownDuration;
                 return;
             }
 
@@ -73,16 +74,17 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
             if (chargeCounter == lChargeDuration)
                 chargingSign.Status = EChargeStatus.FULL;
 
-            chargingSign.SetValue(chargeCounter / lChargeDuration);
+            chargingSign.Value = chargeCounter / lChargeDuration;
         }
 
         private void Strike()
         {
-            Debug.Log("Strike");
-            //Striking stuff
-            equippedWeapon.Strike();
-            Debug.Log(GetTouchSide);
-            StartCooldown();
+            equippedWeapon.Strike(
+                () => 
+                {
+                    StartCooldown();
+                    inventory.StartCooldownOnLastEquipped();
+                });
         }
 
         private void StartCooldown()
@@ -94,7 +96,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
         private void OnDestroy()
         {
-            BattleInventory.OnEquipWeapon -= BattleInventory_OnEquipWeapon;
+            inventory.OnEquipWeapon -= BattleInventory_OnEquipWeapon;
         }
     }
 }

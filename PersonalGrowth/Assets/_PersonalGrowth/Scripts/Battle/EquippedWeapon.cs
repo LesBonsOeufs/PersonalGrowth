@@ -1,5 +1,6 @@
 using DG.Tweening;
 using NaughtyAttributes;
+using System;
 using UnityEngine;
 
 namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
@@ -46,11 +47,12 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
             strikeCollider.enabled = false;
         }
 
-        public async void Strike()
+        public async void Strike(Action onStrikeEnd = null)
         {
             sideMoveTween.Kill(true);
             sideRotateTween.Kill(true);
             strikeCollider.enabled = true;
+
             strikeTween = DOTween.Sequence(transform)
                 .Append(transform.DOLocalMove(Vector3.up * strikeYShift, strikeDuration))
                 .Join(transform.DORotate(new Vector3(0f, 0f, StrikeAngle), strikeDuration))
@@ -59,6 +61,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
 
             await strikeTween.AsyncWaitForCompletion();
 
+            onStrikeEnd?.Invoke();
             strikeCollider.enabled = false;
             SideAnim();
         }

@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887812, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887815, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_Pivot.x
@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887815, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887815, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887815, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 8050175237413887815, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -101,6 +101,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
+--- !u!1 &2705075487293545171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8050175237413887812, guid: 00e01c776fbe4cd4d8c04c3840392250, type: 3}
+  m_PrefabInstance: {fileID: 5349621498737640855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5272639281444795446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705075487293545171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42debdfaf25b48b4c871b5a42aa1640f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDuration: 0.5
+  hideDuration: 0.2
 --- !u!1001 &7543271149950537180
 PrefabInstance:
   m_ObjectHideFlags: 0

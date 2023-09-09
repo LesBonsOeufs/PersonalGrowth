@@ -14,6 +14,19 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         private Image image;
         private Tween effectTween;
 
+        public float Value
+        {
+            get
+            {
+                return image.fillAmount;
+            }
+
+            set
+            {
+                image.fillAmount = value;
+            }
+        }
+
         public EChargeStatus Status
         {
             get
@@ -40,11 +53,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         private void Awake()
         {
             image = GetComponent<Image>();
-        }
-
-        public void SetValue(float value01)
-        {
-            image.fillAmount = value01;
         }
 
         [Serializable]
