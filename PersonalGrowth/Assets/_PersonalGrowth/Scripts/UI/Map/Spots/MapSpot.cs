@@ -1,6 +1,5 @@
 using Com.GabrielBernabeu.Common;
 using Com.GabrielBernabeu.PersonalGrowth.UI.PressFeedbacks;
-using DG.Tweening;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;

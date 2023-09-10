@@ -85,11 +85,11 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
 
         private void StopForSpot(MapSpot spot)
         {
+            StopTravel();
             Debug.Log("New spot!");
             LastSpot = spot;
             positionData.pathStepsProgress = 0;
             SaveMapPosition();
-            StopTravel();
 
             LastSpot.OnActionCompleted += MapSpot_OnActionCompleted;
             LastSpot.StartAction();
@@ -110,6 +110,16 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
             positionData.pathStepsProgress += nSteps;
             SaveMapPosition();
             UpdateMapPosition();
+            MapTrail lPathToNextSpot = LastSpot.TrailsToNextSpots[positionData.lastChosenNextSpotIndex];
+
+            //Completed path
+            if (lPathToNextSpot.IsPathCompleted(positionData.pathStepsProgress))
+            {
+                StopForSpot(LastSpot.NextSpots[positionData.lastChosenNextSpotIndex]);
+                return;
+            }
+            else
+                stepsBubbleTmp.text = (lPathToNextSpot.StepsDistance - positionData.pathStepsProgress).ToString();
         }
 
         private void UpdateMapPosition(bool tweenPosition = true)
@@ -122,15 +132,6 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
                     .SetEase(Ease.InOutQuart);
             else
                 rectTransform.anchoredPosition = lNewAnchorPos;
-
-            //Completed path
-            if (lPathToNextSpot.IsPathCompleted(positionData.pathStepsProgress))
-            {
-                StopForSpot(LastSpot.NextSpots[positionData.lastChosenNextSpotIndex]);
-                return;
-            }
-            else
-                stepsBubbleTmp.text = (lPathToNextSpot.StepsDistance - positionData.pathStepsProgress).ToString();
 
             UpdateForwardTrail();
         }

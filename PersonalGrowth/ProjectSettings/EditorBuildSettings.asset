@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_PersonalGrowth/Scenes/Main.unity
     guid: b726ccd6f56463e4e99c36f41672ff18
+  - enabled: 1
+    path: Assets/_PersonalGrowth/Scenes/Battle.unity
+    guid: ff5a4bdf7bfc8c8478d30b55064c7010
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: effda55fdee971f46bc8e9dd34de83f2, type: 2}

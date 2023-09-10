@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e43e7461f099604c806c5339878a857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardCallCooldown: 0.01
+  _forwardCallCooldown: 0.005
 --- !u!222 &3287070879892033411
 CanvasRenderer:
   m_ObjectHideFlags: 0

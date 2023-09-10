@@ -10,8 +10,8 @@ namespace Com.GabrielBernabeu.PersonalGrowth {
         [SerializeField] private MMF_Player onNewStepsFeedbacks = default;
 
         [Header("Maximums")]
-        [SerializeField] private int maxDailyCoins = 1000;
-        [SerializeField] private int maxTotalCoins = 10000;
+        [SerializeField] private int maxDailyCoins = 10000;
+        [SerializeField] private int maxTotalCoins = 100000;
 
         public int Count { get; private set; }
 

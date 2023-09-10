@@ -23,12 +23,21 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         private void Awake()
         {
             inventory.OnEquipWeapon += BattleInventory_OnEquipWeapon;
+            inventory.OnRemoveWeapon += BattleInventory_OnRemoveWeapon;
         }
 
-        private void BattleInventory_OnEquipWeapon(WeaponInfo weaponInfo)
+        private void BattleInventory_OnEquipWeapon(WeaponInfo info, int inventoryIndex)
         {
-            equippedWeapon.info = weaponInfo;
+            equippedWeapon.info = info;
+            equippedWeapon.inventoryIndex = inventoryIndex;
             StartCooldown();
+            inventory.StartCooldowns();
+        }
+
+        private void BattleInventory_OnRemoveWeapon(WeaponInfo info, int inventoryIndex)
+        {
+            if (inventoryIndex == equippedWeapon.inventoryIndex)
+                inventory.EquipRandomWeapon();
         }
 
         private void Update()
@@ -83,7 +92,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
                 () => 
                 {
                     StartCooldown();
-                    inventory.StartCooldownOnLastEquipped();
+                    //inventory.StartCooldown(equippedWeapon.inventoryIndex);
                 });
         }
 
@@ -97,6 +106,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         private void OnDestroy()
         {
             inventory.OnEquipWeapon -= BattleInventory_OnEquipWeapon;
+            inventory.OnRemoveWeapon -= BattleInventory_OnRemoveWeapon;
         }
     }
 }

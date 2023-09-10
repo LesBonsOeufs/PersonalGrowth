@@ -170,8 +170,8 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   stepCoinsTmp: {fileID: 5304348729140631251}
   onNewStepsFeedbacks: {fileID: 5304348729140631250}
-  maxDailyCoins: 1000
-  maxTotalCoins: 10000
+  maxDailyCoins: 10000
+  maxTotalCoins: 100000
 --- !u!1 &406686337
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   NestWaitingPool: 1
   MutualizeWaitingPools: 1
   PoolCanExpand: 1
-  Lifetime: {x: 4.5, y: 4.5}
+  Lifetime: {x: 2.7, y: 2.7}
   SpawnOffsetMin: {x: 0, y: 0, z: 0}
   SpawnOffsetMax: {x: 0, y: 0, z: 0}
   AnimateMovement: 1
@@ -480,7 +480,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   AnimateY: 1
   RemapYZero: {x: 0, y: 0}
-  RemapYOne: {x: 1, y: 1}
+  RemapYOne: {x: 0.5, y: 0.5}
   AnimateYCurve:
     serializedVersion: 2
     m_Curve:
@@ -1284,6 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d9f9b9eee9fcc44baafb7c8cd3ffee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
 --- !u!224 &526127047 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5304348729495836950, guid: 8d663ce8d92ce25409f9f917b86007e7, type: 3}
@@ -1835,7 +1836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f11bb6c5e6c7764a8415fc4bd2fb98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorTestSteps: 1913
+  editorTestSteps: 3867
 --- !u!1 &1390034403
 GameObject:
   m_ObjectHideFlags: 0

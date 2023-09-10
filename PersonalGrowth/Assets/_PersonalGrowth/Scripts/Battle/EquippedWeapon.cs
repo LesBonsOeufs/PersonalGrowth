@@ -16,6 +16,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
         [Foldout("Visuals"), SerializeField] private int strikeOpeningAngle = 20;
 
         [ReadOnly] public WeaponInfo info;
+        [ReadOnly] public int inventoryIndex;
 
         private Tween sideMoveTween;
         private Tween sideRotateTween;
@@ -85,6 +86,9 @@ namespace Com.GabrielBernabeu.PersonalGrowth.Battle {
             //Prevent striking multiple times
             strikeCollider.enabled = false;
             strikeTween.Kill();
+
+            if (collision.transform.TryGetComponent(out Enemy enemy))
+                enemy.Health -= info.Power;
         }
     }
 }
