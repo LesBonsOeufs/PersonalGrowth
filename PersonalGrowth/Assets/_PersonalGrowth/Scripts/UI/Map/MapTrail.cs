@@ -24,7 +24,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
         {
             base.SetExtents(start, end);
 
-            StepsDistance = Mathf.FloorToInt((end - start).magnitude * (STEPS_PER_1000_UNIT / 1000f));
+            StepsDistance = Mathf.CeilToInt((end - start).magnitude * (STEPS_PER_1000_UNIT / 1000f));
             Debug.Log("Steps distance: " + StepsDistance);
         }
     }
