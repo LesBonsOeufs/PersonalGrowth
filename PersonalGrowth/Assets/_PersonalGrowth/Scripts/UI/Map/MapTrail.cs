@@ -4,7 +4,7 @@ namespace Com.GabrielBernabeu.PersonalGrowth.UI.Map {
     [RequireComponent(typeof(RectTransform))]
     public class MapTrail : Trail
     {
-        public const int STEPS_PER_1000_UNIT = 2000;
+        public const int STEPS_PER_1000_UNIT = 1;
 
         public int StepsDistance { get; private set; }
 
