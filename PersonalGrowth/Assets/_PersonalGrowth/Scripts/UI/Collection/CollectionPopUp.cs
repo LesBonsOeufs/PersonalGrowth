@@ -37,19 +37,18 @@ public class CollectionPopUp : MonoBehaviour
             GeneralTextFeedback.Instance.MakeText("Inventory is already full!");
             return;
         }
-
-        if (StepCoinsManager.Instance.Count < selectedWeapon.Price)
+        else if (StepCoinsManager.Instance.Count < selectedWeapon.Price)
         {
             GeneralTextFeedback.Instance.MakeText("You do not have enough step-coins!");
             return;
         }
 
-        StepCoinsManager.Instance.Consume(selectedWeapon.Price);
         //Save new equipped weapon
         LocalDataSaver<LocalData>.CurrentData.inventory.weaponInfoAddresses.Add(selectedWeapon.name);
         LocalDataSaver<LocalData>.SaveCurrentData();
         inventory.AddWeapon(selectedWeapon);
 
+        StepCoinsManager.Instance.Consume(selectedWeapon.Price);
         gameObject.SetActive(false);
     }
 

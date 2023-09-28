@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   _name: Weapon
-  _price: 1
+  _price: 300
   _sprite: {fileID: 1234414306, guid: a5545b5f712bbaf469dc283ec5e017d8, type: 3}
   _power: 1
   _chargeDuration: 2
