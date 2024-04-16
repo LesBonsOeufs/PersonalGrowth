@@ -1,8 +1,8 @@
-using Com.GabrielBernabeu.Common;
 using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.Common.ReadyToUse {
+namespace Com.GabrielBernabeu.HealthConnectBridge
+{
     public class HealthConnectAARCaller : AndroidAARCaller
     {
 #if UNITY_EDITOR

@@ -1,4 +1,4 @@
-using Com.GabrielBernabeu.Common.ReadyToUse;
+using Com.GabrielBernabeu.HealthConnectBridge;
 using System;
 using UnityEngine;
 

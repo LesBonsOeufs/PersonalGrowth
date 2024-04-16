@@ -1,7 +1,6 @@
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.Common
-{
+namespace Com.GabrielBernabeu.HealthConnectBridge {
     public class AndroidAARCaller : MonoBehaviour
     {
         private AndroidJavaClass unityClass;
