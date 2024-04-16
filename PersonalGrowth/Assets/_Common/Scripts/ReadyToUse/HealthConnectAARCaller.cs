@@ -2,7 +2,7 @@ using Com.GabrielBernabeu.Common;
 using System;
 using UnityEngine;
 
-namespace Com.GabrielBernabeu.PersonalGrowth.PodometerSystem {
+namespace Com.GabrielBernabeu.Common.ReadyToUse {
     public class HealthConnectAARCaller : AndroidAARCaller
     {
 #if UNITY_EDITOR
